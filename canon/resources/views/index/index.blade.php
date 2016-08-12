@@ -115,28 +115,25 @@
         <li class="sina"> <a href="#"><em>&nbsp;</em> 微博登录</a> </li>--}}
     </ul>
     <p><a href="index">已有账号,直接登录</p></a><br/>
-    <form class="signup-form clearfix" method="post" action="reg">
+    <form class="signup-form clearfix" method="post" action="reg" onsubmit="return zhu()">
         {{--<form class="valid-form" id="js-signup-form" autocomplete="off" action='reg' method='post' onsubmit="return sub()">--}}
-        {{--<script>--}}
-            {{--function zhu(){--}}
-                {{--// alert(checkname());--}}
-              {{--//  if(flag&&emailflag&&phoneflag){--}}
-		{{--if(flag&&emailflag&&phoneflag)--}}
-                    {{--return true;--}}
-                {{--}else{--}}
-                    {{--return false;--}}
-                {{--}--}}
-            {{--}--}}
-        {{--</script>--}}
+        <script>
+//            function zhu(){
+//		        if(flag&&pwdflag&&emailflag&&phoneflag)
+//		        {
+//                    return true;
+//                }else{
+//                    return false;
+//                }
+//            }
+        </script>
         <p class="error"></p>
-        <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 " onblur="checkname();"><font color="red" ><p class="tips" id="name_sp"></p></font>
-        <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd"  style="background-image:url('');
+        <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 "><font color="red" ><p class="tips" id="name_sp"></p></font>
+        <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd" style="background-image:url('');
    background-position:right bottom"><font color="red"><p class="tips" id="pwd_sp"></p></font>
-
-        <input type="text" name="email" data-validate="nick" class="ipt ipt-nick" placeholder="邮箱格式:@ . com" id="email" onblur="checkemail();"><font color="red"><p class="tips" id="email_sp"></p></font>
-        <input type="text" name="phone" data-validate="nick" class="ipt ipt-nick" placeholder="手机号为11位 " id="phone" onblur="checkphone();"><font color="red"><p class="tips" id="phone_sp"></p></font>
-
-        <input type="button" name="type" class="button-blue reg" value="注册" data-category="UserAccount" data-action="regist" onclick="zhu()" >
+        <input type="text" name="email" data-validate="nick" class="ipt ipt-nick" placeholder="邮箱格式:@ . com" id="email"><font color="red"><p class="tips" id="email_sp"></p></font>
+        <input type="text" name="phone" data-validate="nick" class="ipt ipt-nick" placeholder="手机号为11位 " id="phone"><font color="red"><p class="tips" id="phone_sp"></p></font>
+        <input type="button" name="type" id="button" class="button-blue reg" value="注册" data-category="UserAccount" data-action="regist"  >
 
         <ul class="third-parties">
             <li>
@@ -362,97 +359,69 @@
 <!--script-->
 <SCRIPT src="../js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
 <script>
-
-    var flag=false;
-    $('#username').blur(function(){
-       // alert(123);
-        var username=$(this).val();
-        //alert(username);
-        var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{3,16}$/;
-        if(reg.test(username)){
-            $('#name_sp').html('');
-            //alert(123);
-            flag=true;
-            return flag;
-        }else if(username=='') {
+    $("#button").click(function(){
+        var username=$('#username').val();
+        var pwd=$('#pwd').val();
+        var email=$("#email").val();
+        var phone=$("#phone").val();
+        if(username == ''){
             $('#name_sp').html('用户名不能为空');
-            //alert(123);
-            flag=true;
-            return flag;
-        }else{
-            $('#name_sp').html('只能中英文，数字，下划线,3-16位');
-            // alert(456);
-            return flag;
-        }
-    })
-    var pwdflag=false;
-    $('#pwd').blur(function(){
-        // alert(123);
-        var pwd=$(this).val();
-        //alert(pwd);
-        var reg = /^[a-zA-Z]\w{5,15}$/;
-        if(reg.test(pwd)){
-            $('#pwd_sp').html('');
-            //alert(123);
-            pwdflag=true;
-            return pwdflag;
-        }else if(pwd=='') {
+            ajax.abort();//终止请求动作.
+        }else if(pwd == ''){
             $('#pwd_sp').html('密码不能为空');
-            //alert(123);
-            pwdflag=true;
-            return pwdflag;
-        }else{
-            $('#pwd_sp').html('以字母开头，只能包含字符、数字和下划线');
-            // alert(456);
-            return pwdflag;
+            ajax.abort();//终止请求动作.
+        }else if(email == ''){
+            $('#email_sp').html('邮箱不能为空');
+            ajax.abort();//终止请求动作.
+        }else if(phone == ''){
+            $("#phone_sp").html('手机号不能为空');
+            ajax.abort();//终止请求动作.
         }
     })
-    var emailflag=false;
+    $('#username').blur(function(){
+        var username=$('#username').val();
+        var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{2,16}$/;
+        if(reg.test(username)) {
+            $('#name_sp').html('');
+        } else if(username=='') {
+            $('#name_sp').html('用户名不能为空');
+        } else {
+            $('#name_sp').html('只能中英文，数字，下划线,3-16位');
+        }
+    })
+    $('#pwd').blur(function(){
+        var pwd=$(this).val();
+        var reg = /^[a-zA-Z]\w{5,15}$/;
+        if(reg.test(pwd)) {
+            $('#pwd_sp').html('');
+        } else if(pwd==''){
+            $('#pwd_sp').html('密码不能为空');
+        } else {
+            $('#pwd_sp').html('以字母开头，只能包含字符、数字和下划线');
+        }
+    })
     $('#email').blur(function(){
         var email=$("#email").val();
-        var reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;//^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$
-        if(reg.test(email)){
-            // alert(123)
+        var reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(reg.test(email)) {
             $("#email_sp").html('')
-            emailflag=true;
-            return emailflag;
-        }else if(email=='') {
+        } else if(email=='') {
             $('#email_sp').html('邮箱不能为空');
-            //alert(123);
-            emailflag=true;
-            return emailflag;
-        }else{
-            // alert(456)
-            // alert(456)
+        } else {
             $("#email_sp").html('邮箱格式错误')
-            return emailflag;
         }
     })
-    var phoneflag=false;
     $("#phone").blur(function(){
         var phone=$("#phone").val();
         var reg = /^[1][358][0-9]{9}$/;
-        if(reg.test(phone)){
+        if(reg.test(phone)) {
             $("#phone_sp").html('')
-            phoneflag=true;
-            return phoneflag;
-        }else if(phone==''){
-            $("#phone_sp").html('手机号不能为空')
-            phoneflag=true;
-            return phoneflag;
-        }else{
+        } else if(phone=='') {
+            $("#phone_sp").html('手机号不能为空');
+        } else {
             $("#phone_sp").html('手机号必须以13、15、18开头');
-            return phoneflag;
         }
     })
-    function zhu() {
-        if (flag&pwdflag&emailflag&phoneflag){
-            //alert('NO')
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     function show(){
         if(this.aa.password.type='password'){
@@ -468,105 +437,55 @@
     }
 
 
-
     $("#u_name").blur(function() {
         var u_name = $("#u_name").val();
-        var reg = /^1\d{10}$/;
-        var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        if (reg.test(u_name)) {
-            // alert(u_name)
-            $.post('name', {
-                u_name: u_name
-            }, function (data) {
-                //alert(data)
-                if (data == 1) {
-                    $("#sp_name").html('')
-                } else if (data == 2) {
-                    $("#sp_name").html('不存在')
-                }
-       })
-
-        } else if (email_reg.test(u_name)) {
-            $.post('email', {
-                u_name: u_name
-            }, function (data) {
-                if (data == 1) {
-                    $("#sp_name").html('')
-                } else if (data == 2) {
-                    $("#sp_name").html('不存在')
-                }
-            })
-        } else {
-            $("#sp_name").html('格式错误')
+        if (u_name!='') {
+            var reg = /^[1][358][0-9]{9}$/;
+            var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+            if(reg.test(u_name) || email_reg.test(u_name)){
+                $("#sp_name").html('')
+            }else{
+                $("#sp_name").html('请输入正确的手机号或邮箱')
+            }
+        }else{
+            $("#sp_name").html('请输入正确的手机号或邮箱')
         }
     })
-    $("#password").keyup(function() {
 
+    $("#password").blur(function() {
         var u_name = $("#u_name").val()
         var u_pwd = $("#password").val()
-        var reg = /^1\d{10}$/;
-        var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        if (reg.test(u_name)) {
-            $.post('name_pwd', {
-                u_name: u_name,
-                u_pwd: u_pwd
-            }, function (data) {
-                if (data == 3) {
-                    $("#sp_pwd").html('')
-                } else if (data == 4) {
-                    $("#sp_pwd").html('密码错误');
-                }
-            })
-        } else if (email_reg.test(u_name)) {
-            $.post('email_pwd', {
-                u_name: u_name,
-                u_pwd: u_pwd
-            }, function (data) {
-                if (data == 3) {
-                    $("#sp_pwd").html('')
-                } else if (data == 4) {
-                    $("#sp_pwd").html('密码错误');
-                }
-            })
+        if(u_pwd!=''){
+            var reg = /^[1][358][0-9]{9}$/;
+            var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+            if(reg.test(u_name) ||　email_reg.test(u_name)) {
+                $("#sp_pwd").html('')
+            }
+        }else{
+            $("#sp_pwd").html('请输入6-16位密码，不能使用空格')
         }
     })
+
     $("#sub").click(function(){
-    var sp_name=$("#sp_name").html();
-        var sp_pwd=$("#sp_pwd").html();
         var u_name=$("#u_name").val();
         var u_pwd=$("#password").val();
-
-        if(sp_name=='' && sp_pwd==''){
-            var reg = /^1\d{10}$/;
-            var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-            if (reg.test(u_name)) {
-                $.post('name_deng',{
-                    u_name:u_name,
-                    u_pwd:u_pwd
-                },function(data){
-                    if(data==5){
-                        alert('登陆成功');location.href='index';
-                    }else if(data==6){
-                        alert('登陆失败');location.href='login';
-                    }
-                })
-            }else if(email_reg.test(u_name)){
-                $.post('email_deng',{
-                    u_name:u_name,
-                    u_pwd:u_pwd
-                },function(data){
-                    if(data==5){
-                        alert('登陆成功');location.href='index';
-                    }else if(data==6){
-                        alert('登陆失败');location.href='login';
-                    }
-                })
-            }
-
-
-        }else{
-            alert("条件不成立");
+        var reg = /^[1][358][0-9]{9}$/;
+        var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(u_name==''){
+            $("#sp_name").html('请输入正确的手机号或邮箱');
+            ajax.abort();//终止请求动作.
+        }else if(u_pwd==''){
+            $("#sp_pwd").html('请输入6-16位密码，不能使用空格');
+            ajax.abort();//终止请求动作.
         }
+        $.post("name_deng",{'u_name':u_name,'u_pwd':u_pwd}, function (msg) {
+            if(msg==1){
+                location.href="index";
+            }else{
+                $("#sp_pwd").html('密码错误');
+                ajax.abort();//终止请求动作.
+            }
+        })
     })
 </script>
 </body>
