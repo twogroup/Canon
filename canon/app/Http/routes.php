@@ -76,6 +76,9 @@ Route::post('zhuanye', 'CourseController@zhuanye');
 Route::get('xiang', 'CourseController@xiang');
 Route::post('con', 'CourseController@con');
 Route::get('ping', 'CourseController@ping');
+Route::get('study', 'CourseController@study');//试题页面
+Route::get('concern', 'CourseController@concern');//点击关注
+Route::get('concer', 'CourseController@concer');//点击关注
 /*
  * 试题结束
  */
