@@ -15,7 +15,7 @@ class ArticleController extends Controller
         }else{
             $username=$_SESSION['username'];
         }
-        $u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
+        $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
         $u_id=$u_id['user_id'];
         //echo $u_id;die;
         //print_r($article);die;
@@ -89,7 +89,7 @@ class ArticleController extends Controller
         }else{
             $username=$_SESSION['username'];
         }
-        $u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
+        $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
         if($u_id){
 
         }
@@ -133,7 +133,7 @@ class ArticleController extends Controller
         }else{
             $username=$_SESSION['username'];
         }
-        $id=$_GET['id'];
+        $id=Request::input('id');
         $arr=DB::table("article")
             ->join("ar_type","article.a_type","=","ar_type.at_id")
             ->where("article.a_id",$id)->get();
@@ -152,7 +152,7 @@ class ArticleController extends Controller
             $u_id=0;
         }else{
             $username=$_SESSION['username'];
-            $u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
+            $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
             $u_id=$u_id['user_id'];
         }
         echo $u_id;die;
