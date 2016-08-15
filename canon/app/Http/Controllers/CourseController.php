@@ -89,27 +89,27 @@ class CourseController extends Controller
     }
     public function xiang(){
         $id=$_GET['id'];
-	//echo $id;die;
-	$num=DB::table('college_questions')->where("c_id",$id)->first();
+    //echo $id;die;
+    $num=DB::table('college_questions')->where("c_id",$id)->first();
         $num=$num['c_num']+=1;
         $sq=DB::update("update college_questions set c_num='$num' where c_id=".$id);
         $arr=DB::table('college_questions')->where('c_id',$id)->first();
 //print_r($arr);die;
-	if(!isset($_SESSION)){
-		session_start();
-	}
-	if(!empty($_SESSION['username'])){
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    if(!empty($_SESSION['username'])){
 
-		$username=$_SESSION['username'];
+        $username=$_SESSION['username'];
 
-	//$username=$_SESSION['username'];
-	$u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
-	$u_id=$u_id['user_id'];
+    //$username=$_SESSION['username'];
+    $u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
+    $u_id=$u_id['user_id'];
         $ping=DB::select("select * from users inner join e_ping on users.user_id=e_ping.u_id where u_id=$u_id order by p_id desc");
-	//print_r($ping);die;
-	}else{
-		$ping=array();
-	}
+    //print_r($ping);die;
+    }else{
+        $ping=array();
+    }
         if($arr['c_college']=='软工学院'){
             $arr['img']='http://123.56.249.121/api/logo/软工.jpg';
         }elseif($arr['c_college']=='移动通信学院'){
@@ -132,7 +132,7 @@ class CourseController extends Controller
       //  echo $arr['img'];die;
         return view('course/xiang',['arr'=>$arr,'ping'=>$ping]);
     }
-	 public function con()
+     public function con()
     {
         $con = $_POST['con'];
         $c_id = $_POST['c_id'];
@@ -143,17 +143,57 @@ class CourseController extends Controller
             //$username=$_SESSION['username'];
             //$u_id=table('users')->where("user_phone","$username")->orwhere("user_email","$username")->pluck('user_id');
            // $u_id=1;
-		 if(!isset($_SESSION)){
+         if(!isset($_SESSION)){
                   session_start();
-	         }
+             }
          $username=$_SESSION['username'];
          $u_id=DB::table('users')->where("user_phone","$username")->orwhere("user_email","$username")->first();
-	$u_id=$u_id['user_id'];
+    $u_id=$u_id['user_id'];
             $sql="insert into e_ping(p_con,u_id,e_id,e_addtime) values('$con',$u_id,'$c_id','$e_addtime')";
             $re=DB::insert($sql);
             $ping=DB::select("select * from users inner join e_ping on users.user_id=e_ping.u_id where u_id=$u_id order by p_id desc");
             return view('course/ping',['ping'=>$ping]);
         }
+    }
+
+    /**
+     * 开始学习页面
+     */
+
+    public function study(){
+        header('content-type:text/html;charset=utf-8');
+
+        $arr=DB::select("select * from video ");
+       //print_r($arr);die;
+       return view('course/video',['list'=>$arr]);
+    }
+
+    /**
+     * 点击关注
+     * [concern description]
+     * @return [type] [description]
+     */
+    public function concern(){
+       $id=$_GET['c_id'];
+       $concern=DB::table('college_questions')->where("c_id",$id)->first();
+       //print_r($concern);die;
+        $concern=$concern['c_concern']=1;
+        $sq=DB::update("update college_questions set c_concern='$concern' where c_id=".$id);
+        return $sq;
+    }
+
+    /**
+     * 点击已关注 变成关注
+     * [concern description]
+     * @return [type] [description]
+     */
+    public function concer(){
+       $id=$_GET['c_id'];
+       $concern=DB::table('college_questions')->where("c_id",$id)->first(); 
+        $concern=$concern['c_concern']=0;
+        //print_r($concern);die;
+        $sq=DB::update("update college_questions set c_concern='$concern' where c_id=".$id);
+        return $sq;
     }
 
 }

@@ -13,7 +13,9 @@
 <meta http-equiv="Cache-Control" content="no-transform ">
 
 <meta name="Keywords" content="">
-<script src="js/push.js"></script><script src="js/rt.js" async="" type="text/javascript"></script><script type="text/javascript">
+<script src="{{asset('js/push.js')}}"></script>
+<script src="{{asset('js/rt.js')}}" async="" type="text/javascript"></script>
+<script type="text/javascript">
 
       var OP_CONFIG={"module":"course","page":"view","userInfo":{"uid":"3116765","nickname":"qq_\u672c\u5bab\u672a\u6b7b\u4f11\u60f3\u7eb3\u59be_03116765","head":"http:\/\/img.mukewang.com\/user\/56f9e5ab0001e7b101000100-80-80.jpg","usertype":"1","roleid":0}};
   var isLogin = 1;
@@ -40,7 +42,22 @@ var GC = {
 
 
 <link rel="stylesheet" href="css/a2.css" type="text/css">
-<script src="js/jquery_002.js" async="" charset="utf-8"></script><script src="js/seajs-text.js" async="" charset="utf-8"></script><script src="js/common.js" async="" charset="utf-8"></script><script src="js/share.js"></script><script src="js/string.js" async="" charset="utf-8"></script><script src="js/suggest.js" async="" charset="utf-8"></script><script src="js/store.js" async="" charset="utf-8"></script><script src="js/json.js" async="" charset="utf-8"></script><script src="javascripts/im.js" async="" charset="utf-8"></script><script src="js/view.js" async="" charset="utf-8"></script><link href="css/share_style0_16.css" rel="stylesheet"><script src="js/course_common.js" async="" charset="utf-8"></script><script src="js/course_collection.js" async="" charset="utf-8"></script><script src="js/socket.js" async="" charset="utf-8"></script><script src="js/jquery.js" async="" charset="utf-8"></script><script src="js/layer.js" async="" charset="utf-8"></script><link href="css/layer2.css" rel="stylesheet" charset="utf-8"></head>
+<script src="{{asset('js/jquery_002.js')}}" async="" charset="utf-8"></script><script src="{{asset('js/seajs-text.js')}}" async="" charset="utf-8"></script><script src="{{asset('js/common.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/share.js')}}"></script>
+<script src="{{asset('js/string.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/suggest.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/store.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/json.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('javascripts/im.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/view.js')}}" async="" charset="utf-8"></script>
+<link href="css/share_style0_16.css" rel="stylesheet">
+<script src="{{asset('js/course_common.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/course_collection.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/socket.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/jquery.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/layer.js')}}" async="" charset="utf-8"></script>
+<script src="{{asset('js/jquery-2.1.4.min.js')}}" async="" charset="utf-8"></script>
+<link href="css/layer2.css" rel="stylesheet" charset="utf-8"></head>
 <body>
 
 @extends('layouts.master')
@@ -49,16 +66,18 @@ var GC = {
 
 
 <div id="main">
-
 <div class="course-infos">
   <div class="w pr">
-		
+    
     <div class="hd">
         <h3 class="1"></h3>
-        <h2 class="l"><br/> The good seaman<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is known in bad weather.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- <h2 class="l"><br/> The good seaman<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is known in bad weather.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        </h2>
+        
+        </h2> -->
+        <!--测试天气情况 （只要联网天气接口就可以使用） Begin-->
+   <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=2&num=4" width="550" height="70" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <!--未来几天天气状况测试结束  END-->
             <a href="javascript:void(0);" class="l video-desc-trigger" id="js-video-trigger">
         <i class="ic-video"></i>
       </a>
@@ -94,11 +113,48 @@ var GC = {
         <a title="分享到新浪微博" href="javascript:;" class="share sina js-share" data-cmd="tsina"></a>
       </div>
       <i class="split-line r"></i>
-            <a href="javascript:;" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85">
-        关注
-      </a>
+     
+      <?php  if($arr['c_concern']==1){ ?>
+       <span id="spa1"><a href="javascript:concer({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="cone"> 已关注 </a></span>
+
+       <?php }else{ ?>
+        <span id="spa0"><a href="javascript:concern({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="concern"> 关注 </a></span>
+         
+
+       <?php }?>
+
+   
+     
           </div>
   </div>
+
+  <script type="text/javascript">
+
+  //点击关注 变成已关注
+  function concern(c_id){
+// alert(c_id);
+       
+      $.get('concern',{c_id:c_id},function(msg){
+        var tr="";
+            tr+='<a href="javascript:concer({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="cone"> 已关注 </a>';
+          $("#concern").remove();//移除关注
+         $('#spa0').html(tr);//追加已关注
+      });
+}
+
+//点击已关注 变成关注
+  function concer(c_id){
+// alert(c_id);  
+      $.get('concer',{c_id:c_id},function(msg){
+        var tr="";
+            tr+='<a href="javascript:concern({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="concern"> 关注 </a>';
+          $("#cone").remove();//移除已关注 
+         $('#spa0').html(tr);//追加关注
+      });
+}
+
+  </script>
+  
   <div class="info-bg" id="js-info-bg">
     <div class="cover-img-wrap">
       <img data-src="http://img.mukewang.com/55af49c2000117af06000338.jpg" alt="" style="display: none" id="js-cover-img">
@@ -116,7 +172,7 @@ var GC = {
                                                                         
                                                                         
                                                                         
-                    <a href="#" class="btn-red start-study-btn r">开始学习</a>
+                    <a href="study" class="btn-red start-study-btn r">开始学习</a>
             <div class="score-info">
     <div class="satisfaction-degree-info">
         <h3>满意度评分</h3>
@@ -147,11 +203,15 @@ var GC = {
     </div><!--score-info end-->    </div><!--info-bar-box end-->
   </div>
   <div class="content-wrap">
+  
     <div class="content">
+   
       <div class="course-brief">
         <h3 class="ctit">试题名称</h3>
         <p class="auto-wrap"><?php echo  $arr['c_name']?></p>
+        
       </div>
+      
       <div class="course-outline">
         <div class="bar clearfix">
             <input type="hidden" id="s_id" value="<?php echo $arr['c_id']?>">
@@ -169,7 +229,9 @@ var GC = {
                 </li>
                           </ul>
                               </div>
+                            
       </div>
+
         <span style="float: right" id="ping">立即评价</span>
         <div id="pinglun">
             <textarea rows="5" cols="100" id="con" placeholder="请输入评论:" style="background:#33ffff"></textarea>
@@ -223,6 +285,7 @@ var GC = {
                         </div><!--evaluation-list end-->
             <div class="more-evaluation"><a href="#" target="_blank">查看更多评价</a></div>
           </div><!--content end-->
+ 
     <div class="aside r">
       <div class="bd">
 
@@ -233,19 +296,20 @@ var GC = {
           <img src="picture/535f03950001915501400140-80-80.jpg" height="80" width="80">
         </a>
         <span class="tit">
-          <a href="http://www.imooc.com/u/112258/courses?sort=publish" target="_blank">laurenyang</a><i class="icon-imooc"></i>
+          <a href="http://blog.csdn.net/zph1234/" target="_blank">laurenyang</a><i class="icon-imooc"></i>
         </span>
-        <span class="job">JAVA开发工程师</span>
+        <span class="job">PHP开发工程师</span>
       </div>
                   <div class="course-info-tip">
                 <dl class="first">
           <dt>课程须知</dt>
-          <dd class="autowrap">此部分为Java入门课程，适合零基础的小伙伴们，赶紧开始学习吧。</dd>
+          <dd class="autowrap">此部分为PHP入门课程，适合零基础的小伙伴们，赶紧开始学习吧。</dd>
         </dl>
                         <dl>
           <dt>老师告诉你能学到什么？</dt>
-          <dd class="autowrap">1、会配置Java开发环境，并使用工具进行程序开发
-2、掌握Java中基本语法的使用
+          <dd class="autowrap">1、会配置PHP开发环境，并使用工具进行程序开发
+
+2、掌握PHP中基本语法的使用
 
 </dd>
         </dl>
@@ -355,9 +419,9 @@ var GC = {
 
 
 <!--script-->
-<script src="js/ssologin.js"></script>
-<script type="text/javascript" src="js/sea.js"></script>
-<script type="text/javascript" src="js/sea_config.js"></script>
+<script src="{{asset('js/ssologin.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/sea.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/sea_config.js')}}"></script>
 <script type="text/javascript">seajs.use("/static/page/"+OP_CONFIG.module+"/"+OP_CONFIG.page);</script>
 
  
@@ -397,7 +461,8 @@ window.bd_cpro_rtid="rHT4P1c";
 var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
 var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
 })(document);
-</script><script src="js/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=f0cfcccd7b1393990c78efdeebff3968" target="_blank"><img src="picture/21.gif" height="20" width="20" border="0"></a>
+</script>
+<script src="{{asset('js/h.js')}}" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=f0cfcccd7b1393990c78efdeebff3968" target="_blank"><img src="picture/21.gif" height="20" width="20" border="0"></a>
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -406,11 +471,13 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-</div><script src="xiang_files/user.htm" type="text/javascript"></script><script src="xiang_files/iplookup.php" type="text/javascript"></script>
+</div>
+<script src="xiang_files/user.htm" type="text/javascript"></script>
+<script src="xiang_files/iplookup.php" type="text/javascript"></script>
 
 
 </body></html>
-<script src="js/jquery-1.8.3.min.js"></script>
+<script src="{{asset('js/jquery-1.8.3.min.js')}}"></script>
 <script>
    $(function(){
        $("#pinglun").hide()
