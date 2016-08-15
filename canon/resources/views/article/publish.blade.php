@@ -49,11 +49,8 @@
                 <label for="" class="form-label l"><span>&nbsp;</span>封面</label>
                 <div class="form-ipt-wrap">
                     <div class="face-upload clearfix">
-
-                                <input type="file" name="a_logo">
-
-
-                       </div>
+                        <input type="file" name="a_logo">
+                    </div>
                     <div id="js-face-reault" class="face-result">
                     </div>
                     <input id="art-face" type="hidden">
@@ -92,7 +89,8 @@
             <div class="tag-selector">
                 <label>标签</label>
                 <div class="tag-selector-wrap">
-                    <div class="target-box clearfix" id="biao">
+                    <div class="target-box clearfix"id="biao">
+                        <!-- <input type="text" id="biao"> -->
                     </div>
                     <p class="tip">您最多可以从以下选择3个标签哟！</p>
                     <div class="tag-box clearfix">
@@ -135,7 +133,7 @@
 
 </div>
 
-@endsection
+
 <div id="J_GotoTop" class="elevator">
     <a class="elevator-weixin" href="javascript:;">
         <div class="elevator-weixin-box">
@@ -170,5 +168,5 @@
 
     })
 </script>
-
+@endsection
 </body></html>

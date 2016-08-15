@@ -165,7 +165,6 @@ var isLogin=0
 
 </div>
 
-@endsection
 <div id="J_GotoTop" class="elevator">
     <a class="elevator-weixin" href="javascript:;">
         <div class="elevator-weixin-box">
@@ -227,15 +226,21 @@ var isLogin=0
 
 
 <div style="display: none">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
-(function (d) {
-window.bd_cpro_rtid="rHT4P1c";
-var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
-var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
-})(document);
-</script><script src="wen_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=f0cfcccd7b1393990c78efdeebff3968" target="_blank"><img src="wen_files/21.gif" height="20" width="20" border="0"></a>
-
-</div><script src="wen_files/user.htm" type="text/javascript"></script><script src="  _files/iplookup.php" type="text/javascript"></script>
+  <script type="text/javascript">
+  var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
+  (function (d) {
+  window.bd_cpro_rtid="rHT4P1c";
+  var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
+  var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
+  })(document);
+  </script>
+  <script src="wen_files/h.js" type="text/javascript"></script>
+    <a href="http://tongji.baidu.com/hm-web/welcome/ico?s=f0cfcccd7b1393990c78efdeebff3968" target="_blank">
+      <img src="wen_files/21.gif" height="20" width="20" border="0">
+    </a>
+</div>
+<script src="wen_files/user.htm" type="text/javascript"></script>
+<script src="  _files/iplookup.php" type="text/javascript"></script>
+@endsection
 </body></html>

@@ -63,7 +63,7 @@
                 <input type="hidden" id="a_id" value="<?php echo $v['a_id']?>">
                 <div class="">
                     <h3 class="item-title">
-                        <a href="fangfa?id=<?php echo $v['a_id']?>" target="_blank" class="title-detail"><?php echo $v['a_title']?></a>
+                        <a href="/fangfa?id=<?php echo $v['a_id']?>" target="_blank" class="title-detail"><?php echo $v['a_title']?></a>
                     </h3>
                     <p class="item-bd"><?php echo $v['a_con']?></p>
                     <div class="item-btm clearfix">

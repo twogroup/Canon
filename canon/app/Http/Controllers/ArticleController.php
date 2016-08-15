@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+use DB,Request,Validator;
 class ArticleController extends Controller
 {
     public function article(){
@@ -45,11 +45,32 @@ class ArticleController extends Controller
     
     
     public function add(){
-        $a_title=$_POST['a_title'];
-        $a_type=$_POST['a_type'];
-        $a_con=$_POST['a_con'];
+        // $img=Request::file('a_logo');
+        // dd($img);
+        //dd($_POST);
+        $a_title=Request::input('a_title');
+        $a_type=Request::input('a_type');
+        $a_con=Request::input('a_con');
         $a_addtime=date("Y-m-d H:i:s");
-        $re=DB::insert("insert into article(a_title,a_type,a_con,a_addtime) values('$a_title','$a_type','$a_con','$a_addtime')");
+        $a_logo=Request::file('a_logo');
+
+        $clientName = $a_logo ->  getClientOriginalName();
+        //所以这里道出了文件上传的原理,将文件上传的某个临时目录中,然后使用Php的函数将文件移动到指定的文件夹.
+        $entension = $a_logo -> getClientOriginalExtension();         //上传文件的后缀.
+
+        $filedir=$_SERVER['DOCUMENT_ROOT']."/uploads/article/";//上传存放的目录
+
+        $newImagesName=md5(time()).rand(1000,9999).".".$entension;  //重新命名上传文件名字
+        $a_logo->move($filedir,$newImagesName); //使用move 方法移动文件.
+        
+        $re = DB::table('article')->insert([
+                'a_title' => $a_title,
+                'a_type' => $a_type,
+                'a_con' => $a_con,
+                'a_addtime' => $a_addtime,
+                'a_logo' => "/uploads/article/".$newImagesName
+            ]);
+        // $re=DB::insert("insert into article(a_title,a_type,a_con,a_addtime) values('$a_title','$a_type','$a_con','$a_addtime')");
         if($re){
             echo "<script>alert('提交成功');location.href='article';</script>";
         }else{
@@ -59,7 +80,7 @@ class ArticleController extends Controller
     
     
     public function zan(){
-        $a_id=$_POST['zan'];
+        $a_id=Request::input('zan');
         if(!isset($_SESSION)){
             session_start();
         }
@@ -91,7 +112,7 @@ class ArticleController extends Controller
     
     
     public function type(){
-        $type=$_POST['type'];
+        $type=Request::input('type');
         if($type=='0'){
             $type=DB::table('article')->get();
         }else{
@@ -135,8 +156,8 @@ class ArticleController extends Controller
             $u_id=$u_id['user_id'];
         }
         echo $u_id;die;
-        $a_id=$_POST['a_id'];
-        $ping=$_POST['ping'];
+        $a_id=Request::input('a_id');
+        $ping=Request::input('ping');
         $sql="insert into aping(u_id,ap_con,a_id) values('$u_id','$ping','$a_id')";
         $re=DB::insert($sql);
 

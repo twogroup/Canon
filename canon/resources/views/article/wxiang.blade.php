@@ -250,7 +250,7 @@ body{margin:8px;font-family:sans-serif;font-size:16px;}p{margin:5px 0;}&lt;/styl
 <div id="main">
 
 </div>
-@endsection
+
 <div id="J_GotoTop" class="elevator">
     <a class="elevator-weixin" href="javascript:;">
         <div class="elevator-weixin-box">
@@ -312,5 +312,6 @@ body{margin:8px;font-family:sans-serif;font-size:16px;}p{margin:5px 0;}&lt;/styl
       </script>
 <div style="display: none">
 </div>
+@endsection
 </body>
 </html>

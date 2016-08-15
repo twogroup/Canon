@@ -36,7 +36,7 @@
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->  <!---->
     </head>
 <body id="index">
-    
+
 @extends('layouts.master')
 @section('sidebar')
 @parent
@@ -74,7 +74,7 @@
         {{--<li class="qweibo"> <a href="http://sc.chinaz.com"><em>&nbsp;</em> QQ登录</a> </li>
         <li class="sina"> <a href="http://sc.chinaz.com"><em>&nbsp;</em> 微博登录</a> </li>--}}
     </ul>
-    <a href=""> <p>还没有账号,立即注册</p></a><br>
+    <a href="#"> <p>还没有账号,立即注册</p></a><br>
     <form class="login-form clearfix" method="post" action="">
 
         <div class="form-arrow"></div>
@@ -91,8 +91,10 @@
             <input name="remember" type="checkbox" checked/>
             下次自动登录 </label>
         <a class="forgot">忘记密码？</a>
-        <ul class="third-parties">
-            <li>
+        
+        <ul class="">
+        <span id="hzy_fast_login"></span>
+            <!-- <li>
                 <p data-url="">新浪微博帐号</p>
             </li>
             <li>
@@ -103,9 +105,10 @@
             </li>
             <li>
                 <p data-url=""></p>
-            </li>
+            </li> -->
         </ul>
     </form>
+    <script type="text/javascript" src="http://open.51094.com/user/myscript/157adb95828f91.html"></script>
 </div>
 
 <div class="modal in" id="signup-modal" > <a class="close" data-dismiss="modal">×</a>
@@ -114,19 +117,9 @@
         {{--<li class="qweibo"> <a href="#"><em>&nbsp;</em> QQ登录</a> </li>
         <li class="sina"> <a href="#"><em>&nbsp;</em> 微博登录</a> </li>--}}
     </ul>
-    <p><a href="index">已有账号,直接登录</p></a><br/>
-    <form class="signup-form clearfix" method="post" action="reg" onsubmit="return zhu()">
+    <p><a href="#">已有账号,直接登录</p></a><br/>
+    <form class="signup-form clearfix" method="post" action="reg">
         {{--<form class="valid-form" id="js-signup-form" autocomplete="off" action='reg' method='post' onsubmit="return sub()">--}}
-        <script>
-//            function zhu(){
-//		        if(flag&&pwdflag&&emailflag&&phoneflag)
-//		        {
-//                    return true;
-//                }else{
-//                    return false;
-//                }
-//            }
-        </script>
         <p class="error"></p>
         <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 "><font color="red" ><p class="tips" id="name_sp"></p></font>
         <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd" style="background-image:url('');

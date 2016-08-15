@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Request,Validator,DB;
 use Redirect;
+use open51094;
 session_start();
 
 class LoginController extends Controller
@@ -10,62 +11,7 @@ class LoginController extends Controller
     public function login(){
         return view('login/login');
     }
-    public function name(){
-        $u_name=Request::input('u_name');
-        if(preg_match('/^[1][358][0-9]{9}$/', $u_name)){
-            $users = DB::table('users')->where('user_phone', $u_name)->first();
-        }else if(preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/', $u_name)){
-            $users = DB::table('users')->where('user_email',$u_name)->first();
-        }
-        if($users){
-            return 1;
-        }
-    }
-    public function name_pwd(){
-        $u_name=Request::input('u_name');
-        $u_pwd=Request::input('u_pwd');
-        $users = DB::table('users')->select()
-             ->where(['user_phone'=>$u_name,'user_pwd'=>$u_pwd])
-             ->get();
-        if($users){
-            return 2;
-        }
-    }
-//    public function name_deng(){
-//        $u_name=$_POST['u_name'];
-//        $u_pwd=$_POST['u_pwd'];
-//        //$_SESSION['username']=$u_name;
-//        if(preg_match('/^[1][358][0-9]{9}$/', $u_name)){
-//            $arr=DB::table('users')
-//                ->where('user_phone',"$u_name")
-//                ->where('user_pwd',"$u_pwd")
-//                ->get();
-//        }else if(preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/', $u_name)){
-//            $arr=DB::table('users')
-//                ->where('user_email',"$u_name")
-//                ->where('user_pwd',"$u_pwd")
-//                ->get();
-//        }
-//        //print_r($arr);die;
-//        if($arr){
-//            $_SESSION['u_id']=$arr[0]['user_id'];
-//            $_SESSION['username']=$arr[0]['user_name'];
-//            return 1;
-//        }
-//    }
-    // public function email_deng(){
-    //     $u_name=$_POST['u_name'];
-    //     $u_pwd=$_POST['u_pwd'];
-    //     $_SESSION['username']=$u_name;
-    //     $arr=DB::table('users')->where('user_email',"$u_name")->where('user_pwd',"$u_pwd")->get();
-    //     if($arr){
-    //     $_SESSION['u_id']=$arr[0]['user_id'];
-    //         echo 5;
-    //     }else{
-    //         echo 6;
-    //     }
-    // }
-
+    //登录
     public function name_deng(){
         $u_name=Request::input('u_name');
         $u_pwd=Request::input('u_pwd');
@@ -95,41 +41,32 @@ class LoginController extends Controller
     public function register(){
         return view('login/register');
     }
+    //注册验证
     public function reg(){
-//	echo "ssssss";die;
-        //dd($_POST);
-        $name=$_POST['username'];
-        $pwd=$_POST['password'];
-        $email=$_POST['email'];
-        $phone=$_POST['phone'];
+        $name=Request::input('username');
+        $pwd=Request::input('password');
+        $email=Request::input('email');
+        $phone=Request::input('phone');
         $a_name=DB::table('users')->where('user_name',"$name")->first();
         if($a_name){
             echo "<script>alert('用户名已存在');location.href='index'</script>";
         }else{
-
             if(DB::table('users')->where('user_email',"$email")->first()){
-
                 echo "<script>alert('邮箱已存在');location.href='index'</script>";
             }else{
                 if(DB::table('users')->where('user_phone',"$phone")->first()){
                     echo "<script>alert('手机号已存在');location.href='index'</script>";
                 }else{
-
-                $arr=DB::insert("insert into users(user_name,user_pwd,user_email,user_phone) values('$name','$pwd','$email','$phone');");
+                    $arr=DB::insert("insert into users(user_name,user_pwd,user_email,user_phone) values('$name','$pwd','$email','$phone');");
                     if($arr){
-			$_SESSION['username']=$name;
+                        $_SESSION['username']=$name;
                         echo "<script>alert('注册成功');location.href='index'</script>";
                     }else{
                         echo "<script>alert('注册失败');location.href='index'</script>";
                     }
-
-
-
                 }
             }
         }
-
-
     }
 
     public function out(){
@@ -137,7 +74,54 @@ class LoginController extends Controller
         echo "<script>alert('退出成功');location.href='index'</script>";
     }
 
-
+    //QQ登录
+    public function sign(){
+        include 'open51094.class.php';
+        $open = new open51094();
+        $code = Request::get('code');
+        $qq = $open->me($code);
+        //
+        $qq_name=$qq['name'];
+        $qq_uniq=$qq['uniq'];
+        //
+        $data = DB::table('users')->where('user_openid',$qq_uniq)->first();
+        //
+        if ($data) {
+            $qq_name = $data['user_nickname'];
+            $user_id = $data['user_id'];
+            $_SESSION['u_id']=$user_id;
+            $_SESSION['username']=$qq_name;
+        }else{
+            $res = DB::table('users')->insert(['user_nickname'=> $qq_name,'user_openid'=>$qq_uniq]);
+            $_SESSION['u_id']=$user_id;
+            $_SESSION['username']=$qq_name;
+        }
+        return redirect('/index');
+    }
+    //微博登陆
+    public function weibo(){
+        include 'open51094.class.php';
+        $open = new open51094();
+        $code = Request::get('code');
+        $data = $open->me($code);
+        //
+        $weibo_uniq = $data['uniq'];
+        $weibo_name = $data['name'];
+        //
+        $data = DB::table('users')->where('user_openid',$weibo_uniq)->first();
+        //
+        if ($data) {
+            $weibo_name = $data['user_nickname'];
+            $user_id = $data['user_id'];
+            $_SESSION['u_id'] = $user_id;
+            $_SESSION['username'] = $weibo_name;
+        }else{
+            //$name="宝典".rand(10000,999);
+            $res = DB::table('users')->insert(['user_nickname'=> $weibo_name,'user_openid'=>$weibo_uniq]);
+            $_SESSION['username'] = $weibo_name;
+        }
+        return redirect('/index');   
+    }
 
 
  }

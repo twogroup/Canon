@@ -81,14 +81,14 @@ session_start();
                                 <a href="/myclub/myquestion/t/ques" class="my-sns l">我的社区</a>
                             </div>
                             -->
-                            <div class="card-history">
+                            <!-- <div class="card-history">
                                 <span class="history-item">
                                     <span class="tit text-ellipsis">python进阶</span>
                                     <span class="media-name text-ellipsis">2-9 闭包</span>
                                     <i class="icon-clock"></i>
                                      <a class="continue" href="/video/6059">继续</a>
                                 </span>
-                            </div>
+                            </div> -->
                             <div class="card-sets clearfix">
                                 <a class="l mr30" target="_blank" href="/wenda/save">发问题</a>
                                 <a class="l" target="_blank" href="/article/publish">写文章</a>
@@ -98,8 +98,7 @@ session_start();
                         <i class="card-arr"></i>
                     </div>
                 </li>
- 
-                    <?php
+                <?php
                     }
                 ?>
             </ul>
