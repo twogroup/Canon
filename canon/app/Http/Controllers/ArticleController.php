@@ -6,7 +6,12 @@ class ArticleController extends Controller
 {
     public function article(){
         $at_type=DB::table('ar_type')->get();
-        $article=DB::select("select * from article left join ar_type on article.a_id=ar_type.at_id order by a_id desc");
+        //$article=DB::select("select * from article left join ar_type on article.a_id=ar_type.at_id order by a_id desc");
+        $article = DB::table('article')
+                ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
+                ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
+                ->orderBy('a_id' , 'desc')
+                ->get();
         if(!isset($_SESSION)){
             session_start();
         }
@@ -26,11 +31,8 @@ class ArticleController extends Controller
             }else{
                 $article[$key]['zan']="0";
             }
-
         }
         //print_r($article);die;
-
-
         //print_r($arr);die;
         return view('article/article',['at_type'=>$at_type,'article'=>$article]);
     }
@@ -38,7 +40,7 @@ class ArticleController extends Controller
     
     public function publish(){
         $at_type=DB::table('ar_type')->get();
-	//print_r($at_type);die;
+        //print_r($at_type);die;
         $a_lei=DB::table('a_lei')->get();
         return view('article/publish',['ar_type'=>$at_type,'a_lei'=>$a_lei]);
     }

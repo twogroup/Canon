@@ -35,9 +35,7 @@ var is_choice = "";
 
 </head>
 <body >
-@extends('layouts.master')
-@section('sidebar')
-@parent
+@include('layouts.master')
 <div id="main">
 
 <div class="settings-cont clearfix">
@@ -111,7 +109,6 @@ var is_choice = "";
 </div>
 
 </div>
-@endsection
 <div id="J_GotoTop" class="elevator">
     <a class="elevator-weixin" href="javascript:;">
         <div class="elevator-weixin-box">
@@ -138,5 +135,6 @@ var is_choice = "";
 
 <div style="display: none">
 </div>
+@include('layouts.footer')
 </body>
 </html>

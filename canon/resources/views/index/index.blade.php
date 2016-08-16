@@ -37,9 +37,7 @@
     </head>
 <body id="index">
 
-@extends('layouts.master')
-@section('sidebar')
-@parent
+@include('layouts.master')
 <!--  
 <div class="g-banner">
   <div class="g-banner-content">
@@ -68,11 +66,9 @@
 </div>
 
 
-<div class="modal in" id="login-modal"> <a class="close" data-dismiss="modal">×</a>
+<!-- <div class="modal in" id="login-modal"> <a class="close" data-dismiss="modal">×</a>
     <h1>登录</h1>
     <ul class="login-bind-tp">
-        {{--<li class="qweibo"> <a href="http://sc.chinaz.com"><em>&nbsp;</em> QQ登录</a> </li>
-        <li class="sina"> <a href="http://sc.chinaz.com"><em>&nbsp;</em> 微博登录</a> </li>--}}
     </ul>
     <a href="#"> <p>还没有账号,立即注册</p></a><br>
     <form class="login-form clearfix" method="post" action="">
@@ -87,25 +83,13 @@
         <input type="button" name="type" class="button-blue login" value="登录" id="sub">
         <input type="hidden" name="return-url" value="">
         <div class="clearfix"></div>
-        <label class="remember">
-            <input name="remember" type="checkbox" checked/>
-            下次自动登录 </label>
+
+        <label class="remember"><input name="remember" type="checkbox" checked/>下次自动登录 </label>
+
         <a class="forgot">忘记密码？</a>
-        
+
         <ul class="">
-        <span id="hzy_fast_login"></span>
-            <!-- <li>
-                <p data-url="">新浪微博帐号</p>
-            </li>
-            <li>
-                <p data-url="">腾讯微博帐号</p>
-            </li>
-            <li>
-                <p data-url="">豆瓣帐号</p>
-            </li>
-            <li>
-                <p data-url=""></p>
-            </li> -->
+            <span id="hzy_fast_login"></span>
         </ul>
     </form>
     <script type="text/javascript" src="http://open.51094.com/user/myscript/157adb95828f91.html"></script>
@@ -113,37 +97,28 @@
 
 <div class="modal in" id="signup-modal" > <a class="close" data-dismiss="modal">×</a>
     <h1>注册</h1>
-    <ul class="login-bind-tp">
-        {{--<li class="qweibo"> <a href="#"><em>&nbsp;</em> QQ登录</a> </li>
-        <li class="sina"> <a href="#"><em>&nbsp;</em> 微博登录</a> </li>--}}
-    </ul>
+    <ul class="login-bind-tp"></ul>
     <p><a href="#">已有账号,直接登录</p></a><br/>
     <form class="signup-form clearfix" method="post" action="reg">
-        {{--<form class="valid-form" id="js-signup-form" autocomplete="off" action='reg' method='post' onsubmit="return sub()">--}}
         <p class="error"></p>
-        <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 "><font color="red" ><p class="tips" id="name_sp"></p></font>
-        <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd" style="background-image:url('');
-   background-position:right bottom"><font color="red"><p class="tips" id="pwd_sp"></p></font>
-        <input type="text" name="email" data-validate="nick" class="ipt ipt-nick" placeholder="邮箱格式:@ . com" id="email"><font color="red"><p class="tips" id="email_sp"></p></font>
-        <input type="text" name="phone" data-validate="nick" class="ipt ipt-nick" placeholder="手机号为11位 " id="phone"><font color="red"><p class="tips" id="phone_sp"></p></font>
-        <input type="button" name="type" id="button" class="button-blue reg" value="注册" data-category="UserAccount" data-action="regist"  >
+        <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 ">
+        <font color="red" ><p class="tips" id="name_sp"></p></font>
 
+        <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd" style="background-image:url('');
+   background-position:right bottom">
+        <font color="red"><p class="tips" id="pwd_sp"></p></font>
+
+        <input type="text" name="email" data-validate="nick" class="ipt ipt-nick" placeholder="邮箱格式:@ . com" id="email">
+        <font color="red"><p class="tips" id="email_sp"></p></font>
+
+        <input type="text" name="phone" data-validate="nick" class="ipt ipt-nick" placeholder="手机号为11位 " id="phone">
+        <font color="red"><p class="tips" id="phone_sp"></p></font>
+
+        <input type="button" name="type" id="button" class="button-blue reg" value="注册" data-category="UserAccount" data-action="regist"  >
         <ul class="third-parties">
-            <li>
-                <p data-url="">新浪微博帐号</p>
-            </li>
-            <li>
-                <p data-url="">腾讯微博帐号</p>
-            </li>
-            <li>
-                <p data-url="">豆瓣帐号</p>
-            </li>
-            <li>
-                <p data-url=""></p>
-            </li>
         </ul>
     </form>
-</div>
+</div> -->
 
 
 <div id="mooc-dynamic" class="dynamic bg-grey idx-minwidth" style=" margin-top:20px;">
@@ -350,7 +325,7 @@
             <span id="js-mobile-trigger" class="mobile-trigger"></span>
         </div>
 <!--script-->
-<SCRIPT src="../js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
+<!--<SCRIPT src="../js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
 <script>
     $("#button").click(function(){
         var username=$('#username').val();
@@ -480,7 +455,7 @@
             }
         })
     })
-</script>
+</script>-->
+@include('layouts.footer')
 </body>
-@endsection
 </html>

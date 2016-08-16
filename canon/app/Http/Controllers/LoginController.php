@@ -69,6 +69,7 @@ class LoginController extends Controller
         }
     }
 
+    //退出
     public function out(){
         unset($_SESSION['username']);
         echo "<script>alert('退出成功');location.href='index'</script>";

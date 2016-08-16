@@ -23,10 +23,7 @@
 
 </head>
 <body style="background:#fff;">
-@extends('layouts.master')
-@section('sidebar')
-    @parent
-
+@include('layouts.master')
 
 
     
@@ -312,6 +309,7 @@ require.config({paths:{
     <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none; left: 538.5px;"></ul>
 <script type="text/javascript" src="js/ipinyou_2be9977.js"></script>
 
-<script src="js/js.php"></script><script src="js/ydap.js"></script><script src="js/ds.js" type="text/javascript"></script></body>
-@endsection
+<script src="js/js.php"></script><script src="js/ydap.js"></script><script src="js/ds.js" type="text/javascript"></script>
+@include('layouts.footer')
+</body>
 </html>

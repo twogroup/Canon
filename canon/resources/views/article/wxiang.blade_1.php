@@ -38,10 +38,7 @@ var user = {
 </head>
 <body>
 
-@extends('layouts.master')
-@section('sidebar')
-    @parent
-
+@include('layouts.master')
 
 <script>
 var isLogin=0
@@ -242,5 +239,5 @@ var isLogin=0
 </div>
 <script src="wen_files/user.htm" type="text/javascript"></script>
 <script src="  _files/iplookup.php" type="text/javascript"></script>
-@endsection
+@include('layouts.footer')
 </body></html>

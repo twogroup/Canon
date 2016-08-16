@@ -35,10 +35,7 @@ var authorUid = {
 <link rel="stylesheet" href="css/detail-less.css?v=1463035000" type="text/css" />
 </head>
 <body >
-@extends('layouts.master')
-@section('sidebar')
-    @parent
-
+@include('layouts.master')
 
 <script>
 var isLogin=1
@@ -312,6 +309,6 @@ body{margin:8px;font-family:sans-serif;font-size:16px;}p{margin:5px 0;}&lt;/styl
       </script>
 <div style="display: none">
 </div>
-@endsection
+@include('layouts.footer')
 </body>
 </html>
