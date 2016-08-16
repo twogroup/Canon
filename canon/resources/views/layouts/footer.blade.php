@@ -1,3 +1,5 @@
+</div>
+
 <div class="footer bg-white idx-minwidth">
   <div class="container">
 

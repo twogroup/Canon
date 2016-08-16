@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="css/d79d81e9ab144c28aae8b073106e6881.css" type="text/css" />
 </head>
 <body  id="List_courseId">
-@extends('layouts.master')
-@section('sidebar')
-    @parent
+@include('layouts.master')
 <div id="main">
     <div class="container">
         <div class="course-content">
@@ -250,6 +248,6 @@
     })
 </script>
 
+@include('layouts.footer')
 </body>
-@endsection
 </html>

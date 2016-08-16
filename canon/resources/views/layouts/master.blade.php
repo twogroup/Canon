@@ -110,14 +110,13 @@ session_start();
             </ul>
         </div>
 
-        <div class='search-warp clearfix' style='min-width: 32px; height: 60px;'>
-            <div class="search-area min" data-search="top-banner">
-                <input class="search-input" data-suggest-trigger="suggest-trigger" placeholder="请输入想搜索的内容..." type="text" autocomplete="off">
-                <input type='hidden' class='btn_search' data-search-btn="search-btn" />
-                <ul class="search-area-result" data-suggest-result="suggest-result">
-                </ul>
+        <div class="search-warp clearfix" style="min-width: 32px; height: 60px;">
+            <div style="" class="search-area" data-search="top-banner">
+                <input class="search-input" id="sousuo" data-suggest-trigger="suggest-trigger" placeholder="请输入想搜索的内容..." autocomplete="off" type="text">
+                <input class="btn_search" data-search-btn="search-btn" type="hidden">
+                <ul style="" class="search-area-result" data-suggest-result="suggest-result"></ul>
             </div>
-            <div class='showhide-search' data-show='no'><i class='icon-search'></i></div>
+            <div class="showhide-search" data-show="no"><i class="icon-search"></i></div>
         </div>
     </div>
 </div>
@@ -179,6 +178,9 @@ session_start();
         </ul>
     </form>
 </div>
+<div id="searchs">
+    
+
 <SCRIPT src="../js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
 <script>
     $("#button").click(function(){
@@ -309,4 +311,19 @@ session_start();
             }
         })
     })
+
+
+    $('.showhide-search').click(function(){
+       var sou=$('#sousuo').val();
+        //alert(sou);die;
+        $.ajax({
+            type: "POST",
+            url: "lalala",
+            data: {sou:sou},
+            success: function(msg){
+                $("#searchs").html(msg);
+            }
+        });
+    });
+
 </script>

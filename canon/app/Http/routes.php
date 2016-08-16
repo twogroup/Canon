@@ -110,6 +110,10 @@ Route::get('college','CompanyController@college');
 Route::get('college_x','CompanyController@college_x');
 Route::get('college_exam','CompanyController@college_exam');
 
+/*
+ *页面搜索
+ */
+Route::post('lalala', 'SearchController@index');
 
 
 /*

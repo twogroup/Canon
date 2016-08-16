@@ -65,62 +65,6 @@
     <div id="js-video-close" class="video-close"></div>
 </div>
 
-
-<!-- <div class="modal in" id="login-modal"> <a class="close" data-dismiss="modal">×</a>
-    <h1>登录</h1>
-    <ul class="login-bind-tp">
-    </ul>
-    <a href="#"> <p>还没有账号,立即注册</p></a><br>
-    <form class="login-form clearfix" method="post" action="">
-
-        <div class="form-arrow"></div>
-        <input id="u_name" type="text" placeholder="手机号或邮箱：">
-        <font color="red"><span id="sp_name"></span></font>
-
-        <input id="password" type="password" placeholder="密码：">
-        <font color="red"> <span id="sp_pwd"></span></font>
-
-        <input type="button" name="type" class="button-blue login" value="登录" id="sub">
-        <input type="hidden" name="return-url" value="">
-        <div class="clearfix"></div>
-
-        <label class="remember"><input name="remember" type="checkbox" checked/>下次自动登录 </label>
-
-        <a class="forgot">忘记密码？</a>
-
-        <ul class="">
-            <span id="hzy_fast_login"></span>
-        </ul>
-    </form>
-    <script type="text/javascript" src="http://open.51094.com/user/myscript/157adb95828f91.html"></script>
-</div>
-
-<div class="modal in" id="signup-modal" > <a class="close" data-dismiss="modal">×</a>
-    <h1>注册</h1>
-    <ul class="login-bind-tp"></ul>
-    <p><a href="#">已有账号,直接登录</p></a><br/>
-    <form class="signup-form clearfix" method="post" action="reg">
-        <p class="error"></p>
-        <input type="text" name="username" id="username" data-validate="email" autocomplete="off" class="ipt ipt-email" placeholder="请输入名称 ">
-        <font color="red" ><p class="tips" id="name_sp"></p></font>
-
-        <input type="password" name="password"  class="ipt ipt-pwd js-pass-pwd" placeholder="6-16位密码，不能用空格" id="pwd" style="background-image:url('');
-   background-position:right bottom">
-        <font color="red"><p class="tips" id="pwd_sp"></p></font>
-
-        <input type="text" name="email" data-validate="nick" class="ipt ipt-nick" placeholder="邮箱格式:@ . com" id="email">
-        <font color="red"><p class="tips" id="email_sp"></p></font>
-
-        <input type="text" name="phone" data-validate="nick" class="ipt ipt-nick" placeholder="手机号为11位 " id="phone">
-        <font color="red"><p class="tips" id="phone_sp"></p></font>
-
-        <input type="button" name="type" id="button" class="button-blue reg" value="注册" data-category="UserAccount" data-action="regist"  >
-        <ul class="third-parties">
-        </ul>
-    </form>
-</div> -->
-
-
 <div id="mooc-dynamic" class="dynamic bg-grey idx-minwidth" style=" margin-top:20px;">
     <div id="dynamic-wrap" class="dynamic-wrap idx-width">
         <div id="dynamic-left" class="dynamic-left"></div>

@@ -60,9 +60,7 @@ var GC = {
 <link href="css/layer2.css" rel="stylesheet" charset="utf-8"></head>
 <body>
 
-@extends('layouts.master')
-@section('sidebar')
-@parent
+@include('layouts.master')
 
 
 <div id="main">
@@ -402,7 +400,6 @@ var GC = {
 
 </div>
 
-@endsection
 <div id="J_GotoTop" class="elevator">
     <a class="elevator-weixin" href="javascript:;">
         <div class="elevator-weixin-box">
@@ -475,7 +472,7 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
 <script src="xiang_files/user.htm" type="text/javascript"></script>
 <script src="xiang_files/iplookup.php" type="text/javascript"></script>
 
-
+@include('layouts.footer')
 </body></html>
 <script src="{{asset('js/jquery-1.8.3.min.js')}}"></script>
 <script>
