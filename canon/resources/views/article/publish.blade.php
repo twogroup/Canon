@@ -74,7 +74,7 @@
                         <div id="js-wmd-wrap-js-mk" class="wmd-wrap">
 
                             <div id="js-wmd-input-wrap-js-mk" class="wmd-input-wrap">
-                                <textarea id="wmd-input-js-mk" name="a_con"></textarea>
+                                <textarea id="editor" name="a_con"></textarea>
                             </div>
                             <div id="js-wmd-preview-wrap-js-mk" class="wmd-preview-wrap">
                                 <div id="wmd-preview-js-mk" class="wmd-preview"></div>
@@ -126,6 +126,12 @@
 
 
 </div><!--opus-wrap end-->
+
+<script type="text/javascript" charset="utf-8" src="baidu/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="baidu/ueditor.all.min.js"> </script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>
 
 <div id="main">
 
