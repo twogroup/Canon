@@ -1,12 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB,Request,Validator;
 
 class UserController extends Controller
 {
     //个人资料
     public function setprofile(){
-        return view('user/setprofile');
+        $pro = Request::input('pro');
+        if ($pro=='') {
+            $address = DB::table('region')
+                    ->where('parent_id' , '1')
+                    ->get();
+            return view('user/setprofile',['address'=>$address]);
+        }else{
+            $address = DB::table('region')
+                    ->where('parent_id' , $pro)
+                    ->get();
+            //print_r($address);
+            //return view('user/setprofile',['address'=>$address]);
+            //header('Content-type: application/json');
+            return json_encode($address);        
+        }
+        
+        
     }
     //头像设置
     public function setavator(){

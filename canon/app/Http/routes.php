@@ -32,7 +32,9 @@ Route::post('name_deng', 'LoginController@name_deng');
 Route::get('sign', 'LoginController@sign');
 
 //个人中心
-Route::get('user/setprofile', 'UserController@setprofile');
+Route::any('user/setprofile', 'UserController@setprofile');
+//Route::post('user/setprofile', 'UserController@setprofile');//三级联动
+
 Route::get('user/setavator', 'UserController@setavator');
 Route::get('user/setphone', 'UserController@setphone');
 Route::get('user/setverifyemail', 'UserController@setverifyemail');
