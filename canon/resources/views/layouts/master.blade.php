@@ -2,11 +2,6 @@
 <link rel="stylesheet" type="text/css" href="../static/css/ui2.css?2013032917">
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->  <!---->
 @section('sidebar')
-<?php 
-if(!isset($_SESSION)){
-session_start(); 
-}
-?>
 <div id="header">
     <div class="page-container" id="nav">
         <a href="http://www.canon.com/" target="_self">
@@ -26,8 +21,15 @@ session_start();
             </ul>
         </div>
 
-        <div id="login-area">
-            <ul    <?php if(empty($_SESSION['username'])){ ?> class="header-unlogin clearfix" <?php }else{ ?> class="clearfix logined" <?php }?>>
+        <div id="login-area" >
+            <ul    
+    
+            @if(empty(Session::get('username')))
+             class="header-unlogin clearfix" 
+            @else 
+                class="clearfix logined" 
+            @endif
+            >
                 <li class="header-app">
                     <a href="/mobile/app">
                         <span class="icon-appdownload"></span>
@@ -40,7 +42,7 @@ session_start();
                 </li>
                 
                 <?php
-                    if(empty($_SESSION['username'])){
+                    if(empty(Session::get('username'))){
                 ?>
                 <li class="header-signin">
                     <a href="#login-modal" id="" data-category="UserAccount" data-action="login" data-toggle="modal" >登录</a>
@@ -72,12 +74,16 @@ session_start();
                     <div class="g-user-card">
                         <div class="card-inner">
                             <div class="card-top">
-                                <a href="/u/3071208/courses"><img class="l" alt="<?php echo $_SESSION['username'] ?>" src="/images/unknow-160.png"></a>
-                                <a href="/u/3071208/courses"><span class="name text-ellipsis"><?php echo $_SESSION['username'] ?></span></a>
+                                <a href="/u/3071208/courses">
+                                    <img class="l" alt="<?php echo Session::get('username'); ?>" src="/images/unknow-160.png">
+                                </a>
+                                <a href="/u/3071208/courses">
+                                    <span class="name text-ellipsis"><?php echo Session::get('username'); ?></span>
+                                </a>
                                 <p class="meta">
-					<a href="/u/3071208/experience">经验<b id="js-user-mp">550</b></a>
-					<a href="/u/3071208/credit">积分<b id="js-user-credit">0</b></a>            </p>
-                    
+                					<!-- <a href="/u/3071208/experience">经验<b id="js-user-mp">550</b></a>
+                					<a href="/u/3071208/credit">积分<b id="js-user-credit">0</b></a>  -->           
+                                </p>
                                 <a class="icon-set setup" href="/user/setprofile"></a>
                             </div>
                             <!--
@@ -96,8 +102,9 @@ session_start();
                                 </span>
                             </div> -->
                             <div class="card-sets clearfix">
-                                <a class="l mr30" target="_blank" href="/wenda/save">发问题</a>
-                                <a class="l" target="_blank" href="/article/publish">写文章</a>
+                                <a class="l" target="_blank" href="/user/setprofile">个人信息</a>
+                                <!-- <a class="l mr30" target="_blank" href="/wenda/save">发问题</a>
+                                <a class="l" target="_blank" href="/article/publish">写文章</a> -->
                                 <a class="r" href="/out?referer=http://www.mbaodian.com/">退出</a>
                             </div>
                         </div>

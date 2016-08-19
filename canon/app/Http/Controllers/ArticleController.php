@@ -1,43 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB,Request,Validator;
+use Request,Validator,DB;
+use Session;
+
+/*
+*  方法模块
+*  展示文章
+*   
+*/
 class ArticleController extends Controller
 {
+    /*
+    *   文章最新
+    */
     public function article(){
         $at_type=DB::table('ar_type')->get();
-        //$article=DB::select("select * from article left join ar_type on article.a_id=ar_type.at_id order by a_id desc");
         $article = DB::table('article')
                 ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
                 ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
                 ->orderBy('a_id' , 'desc')
-                ->get();
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if(empty($_SESSION['username'])){
+                ->paginate(5);
+        if(empty(Session::get('username'))){
             $username=0;
         }else{
-            $username=$_SESSION['username'];
+            $username=Session::get('username');
         }
-        $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
-        $u_id=$u_id['user_id'];
-        //echo $u_id;die;
-        //print_r($article);die;
-        foreach($article as $key=>$val){
-            $arr=DB::table('article_zan')->where(["u_id"=>0,"article_id"=>$val['a_id']])->first();
-            if($arr){
-                $article[$key]['zan']="1";
-            }else{
-                $article[$key]['zan']="0";
-            }
-        }
-        //print_r($article);die;
-        //print_r($arr);die;
         return view('article/article',['at_type'=>$at_type,'article'=>$article]);
     }
     
-    
+
     public function publish(){
         $at_type=DB::table('ar_type')->get();
         //print_r($at_type);die;
@@ -47,9 +39,6 @@ class ArticleController extends Controller
     
     
     public function add(){
-        // $img=Request::file('a_logo');
-        // dd($img);
-        //dd($_POST);
         $a_title=Request::input('a_title');
         $a_type=Request::input('a_type');
         $a_con=Request::input('a_con');
@@ -72,7 +61,6 @@ class ArticleController extends Controller
                 'a_addtime' => $a_addtime,
                 'a_logo' => "/uploads/article/".$newImagesName
             ]);
-        // $re=DB::insert("insert into article(a_title,a_type,a_con,a_addtime) values('$a_title','$a_type','$a_con','$a_addtime')");
         if($re){
             echo "<script>alert('提交成功');location.href='article';</script>";
         }else{
@@ -80,38 +68,39 @@ class ArticleController extends Controller
         }
     }
     
-    
+    /*
+    *   文章点赞功能
+    */
     public function zan(){
-        $a_id=Request::input('zan');
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if(empty($_SESSION['username'])){
+
+        $a_id=Request::input('id');
+        if(empty(Session::get('username'))){
             echo 1;
         }else{
-            $username=$_SESSION['username'];
+            $username=Session::get('username');
         }
-        $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
-        if($u_id){
-
-        }
-        $u_id=empty($u_id['user_id'])?$u_id['user_id']:1;
-       echo $u_id;die;
-        $arr=DB::table('article_zan')->where("u_id",$u_id)->where("article_id",$a_id)->get();
-        if($arr){
-            $zan=DB::table('article')->where('a_id',$a_id)->first();
+        $user=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
+        $u_id = $user['user_id'];
+        //文章点赞功能查询
+        $arr = DB::table('article_zan')->where('u_id',$u_id)->where('article_id',$a_id)->get();
+        //print_r($arr);die;
+        if($arr!=array()){
+            return 0;
         }else{
-            $zan=DB::table('article')->where('a_id',$a_id)->first();
-            $nu=$zan['a_num'];
-            $a_num=$nu+=1;
-            $aa=DB::insert("update article set a_num=$a_num where a_id=$a_id");
-            $a=DB::insert("insert into from article_zan(u_id,article_id) values('$u_id','$a_id')");
-            $zan=DB::table('article')->where('a_id',$a_id)->get();
+            //得到对应id的文章
+            $zan = DB::table('article')->where('a_id',$a_id)->first();
+            $num = $zan['a_num'];
+            $a_num = $num+=1;
+            //点赞数量增加
+            $zan_jia = DB::table('article')->where('a_id',$a_id)->update(['a_num'=>$a_num]);
+            //没点过赞的人点赞成功
+            $article_zan_jia = DB::table('article_zan')->insert(['u_id'=>$u_id,'article_id'=>$a_id]);
+            //得到对应id的文章
+            $zan = DB::table('article')->where('a_id',$a_id)->first();
+
+            return 1;
         }
-        //print_r($zan);die;
-        return json_encode($zan);
-    }
-    
+    }    
     
     public function type(){
         $type=Request::input('type');
@@ -127,13 +116,10 @@ class ArticleController extends Controller
 
 
     public function wxiang(){
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if(empty($_SESSION['username'])){
+        if(empty(Session::get('username'))){
             $username=0;
         }else{
-            $username=$_SESSION['username'];
+            $username=Session::get('username');
         }
         $id=Request::input('id');
         $arr=DB::table("article")
@@ -146,14 +132,11 @@ class ArticleController extends Controller
     }
     
     public function wping(){
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if(empty($_SESSION['username'])){
+        if(empty(Session::get('username'))){
             $username=0;
             $u_id=0;
         }else{
-            $username=$_SESSION['username'];
+            $username=Session::get('username');
             $u_id=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
             $u_id=$u_id['user_id'];
         }
@@ -167,5 +150,33 @@ class ArticleController extends Controller
         //print_r($aping);die;
         return json_encode($aping);
         //return view('article/aping',['aping'=>$aping]);
+    }
+
+    /*
+    *   文章最热
+    */
+    public function hot(){
+        $at_type=DB::table('ar_type')->get();
+        $article = DB::table('article')
+                ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
+                ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
+                ->orderBy('a_num' , 'desc')
+                ->get();
+        if(empty(Session::get('username'))){
+            $username=0;
+        }else{
+            $username=Session::get('username');
+        }
+        $user=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
+        $u_id=$user['user_id'];
+        foreach($article as $key=>$val){
+            $arr=DB::table('article_zan')->where(["u_id"=>0,"article_id"=>$val['a_id']])->first();
+            if($arr){
+                $article[$key]['zan']="1";
+            }else{
+                $article[$key]['zan']="0";
+            }
+        }
+        return view('article/article1',['at_type'=>$at_type,'article'=>$article]);
     }
 }

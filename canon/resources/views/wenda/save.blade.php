@@ -29,10 +29,7 @@ var is_choice = "";
 <script src="js/jquery.js" async="" charset="utf-8"></script><script src="js/seajs-text.js" async="" charset="utf-8"></script><script src="js/common.js" async="" charset="utf-8"></script><script src="js/string.js" async="" charset="utf-8"></script><script src="js/suggest.js" async="" charset="utf-8"></script><script src="js/store.js" async="" charset="utf-8"></script><script src="js/json.js" async="" charset="utf-8"></script><script src="js/im.js" async="" charset="utf-8"></script><script src="js/save.js" async="" charset="utf-8"></script><script src="js/socket.js" async="" charset="utf-8"></script><script src="js/autocomplete.js" async="" charset="utf-8"></script><script src="js/verify-code.js" async="" charset="utf-8"></script><link rel="stylesheet" type="text/css" href="../css/ueditorhx.css"><script defer="defer" type="text/javascript" src="js/codemirror.js"></script><link href="../css/codemirrorhx.css" type="text/css" rel="stylesheet"><script defer="defer" type="text/javascript" src="js/ZeroClipboard.js"></script></head>
 <body style="background:#fff;">
 
-@extends('layouts.master')
-@section('sidebar')
-@parent
-
+@include('layouts.master')
 
 <div style="" id="main">
 
@@ -161,7 +158,9 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
 })();
 </script>
 </div><script src="save_files/user.htm" type="text/javascript"></script><script src="save_files/iplookup.php" type="text/javascript"></script>
-<div class="edui-imooc" style="position: fixed; left: 0px; top: 0px; width: 0px; height: 0px;" id="edui_fixedlayer"><div style="display: none;" id="edui43" class="edui-popup  edui-bubble edui-imooc" onmousedown="return false;"> <div id="edui43_body" class="edui-popup-body edui-imooc"> <iframe class="edui-imooc" style="position:absolute;z-index:-1;left:0;top:0;background-color: transparent;" src="../save_files/a_002.htm" width="100%" frameborder="0" height="100%"></iframe> <div class="edui-shadow edui-imooc"></div> <div id="edui43_content" class="edui-popup-content edui-imooc">  </div> </div></div></div><div style="position: absolute; left: 0px; top: -9999px; width: 1px; height: 1px; z-index: 999999999;" class="global-zeroclipboard-container" id="global-zeroclipboard-html-bridge"><object id="global-zeroclipboard-flash-bridge" name="global-zeroclipboard-flash-bridge" type="application/x-shockwave-flash" data="../save_files/ZeroClipboard.swf" width="100%" height="100%"><param name="allowScriptAccess" value="sameDomain"><param name="allowNetworking" value="all"><param name="menu" value="false"><param name="wmode" value="transparent"><param name="flashvars" value="trustedOrigins=www.imooc.com%2C%2F%2Fwww.imooc.com%2Chttp%3A%2F%2Fwww.imooc.com"></object></div></body></html>
+<div class="edui-imooc" style="position: fixed; left: 0px; top: 0px; width: 0px; height: 0px;" id="edui_fixedlayer"><div style="display: none;" id="edui43" class="edui-popup  edui-bubble edui-imooc" onmousedown="return false;"> <div id="edui43_body" class="edui-popup-body edui-imooc"> <iframe class="edui-imooc" style="position:absolute;z-index:-1;left:0;top:0;background-color: transparent;" src="../save_files/a_002.htm" width="100%" frameborder="0" height="100%"></iframe> <div class="edui-shadow edui-imooc"></div> <div id="edui43_content" class="edui-popup-content edui-imooc">  </div> </div></div></div><div style="position: absolute; left: 0px; top: -9999px; width: 1px; height: 1px; z-index: 999999999;" class="global-zeroclipboard-container" id="global-zeroclipboard-html-bridge"><object id="global-zeroclipboard-flash-bridge" name="global-zeroclipboard-flash-bridge" type="application/x-shockwave-flash" data="../save_files/ZeroClipboard.swf" width="100%" height="100%"><param name="allowScriptAccess" value="sameDomain"><param name="allowNetworking" value="all"><param name="menu" value="false"><param name="wmode" value="transparent"><param name="flashvars" value="trustedOrigins=www.imooc.com%2C%2F%2Fwww.imooc.com%2Chttp%3A%2F%2Fwww.imooc.com"></object></div>
+@include('layouts.footer')
+</body></html>
 <script>
     var t_content=CKEDITOR.replace("t_content");
     
@@ -187,7 +186,6 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
         ) }
     })
 </script>
-@endsection
 
 
 

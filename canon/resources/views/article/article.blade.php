@@ -20,7 +20,16 @@
         var is_choice = "";
         var seajsTimestamp="v=201603251711";
     </script>
-
+    <style>
+    #fenye li{
+        list-style: none;
+        float: left;
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: 18px;
+        color: #ff998c;
+    }
+</style>
     <link rel="stylesheet" href="css/3dd38c5eb19043548362b1f191b56a92.css" type="text/css" />
 </head>
 <body >
@@ -45,8 +54,8 @@
             <div class="article-tool-bar clearfix">
                 <div class="tool-left l">
 
-                    <a href="#" class="sort-item active">最新</a>
-                    <a href="#" class="sort-item ">热门</a>
+                    <a href="article" class="sort-item active">最新</a>
+                    <a href="hot" class="sort-item ">热门</a>
                 </div>
             </div>
             <div id="lie">
@@ -71,14 +80,15 @@
                                 <a class="item-tag" href="#" target="_blank"><?php echo $v['al_name']?></a>
                             </li>
                             <li class="pass-time"><span><?php echo $v['a_addtime']?></span></li>
-                            <li class="pass-time"><span><?php echo $v['a_num']?>浏览</span></li>
+                            <!-- <li class="pass-time"><span><?php echo $v['a_num']?>浏览</span></li> -->
                         </ul>
                         <div class="r right-info">
                             <div class="favorite l" id="zan" value="<?php echo $v['a_id']?>">
                                 <img src="images/zan.jpg"  class="zan" width="15" height="20">
-                                <em id="z-<?php echo $v['a_id']?>">点赞
+                                <em id="<?php echo $v['a_id']?>" class="dianzan">点赞
                                     <?php echo $v['a_num']?>
                                 </em>
+                                <input type="hidden" id="user" value="<?php echo Session::get('username');?>">
                             </div>
                             <div class="item-judge l">
                                 <i class="icon sns-comment"></i><em>评论 0</em>
@@ -90,7 +100,9 @@
 <?php } ?>
 
         </div>
+        <ul id="fenye"><li>{{ $article->render() }}</li></ul>
         </div>
+        
         <div class="article-right r">
             <!-- 写文章 -->
 
@@ -245,6 +257,33 @@
 <div style="display: none">
     <script src="js/jquery-1.9.1.min.js"></script>
     <script>
+        //点赞
+        //鼠标移上显示小手
+        $('.dianzan').mousemove(function() {
+            $(this).css('cursor', 'pointer');
+        })
+
+        //点赞事件
+        $('.dianzan').click(function(){
+            var username = $('#user').val();
+            //alert(username)
+            if (username=='') {
+                alert('请先登录');
+                location.href="index";
+            }else{
+                var id = $(this).attr('id');
+                //alert(id)
+                $.get("zan",{'id':id},function(msg){
+                    if (msg == 0) {
+                        alert("您已经点过赞了哦");
+                    } else {
+                        alert('点赞成功');
+                        location.href = "article";
+                    }
+                })
+            }
+        })
+
         $(document).on("click","#type",function(){
            var type=$(this).attr("value")
             $.post('type',{

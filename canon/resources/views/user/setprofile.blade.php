@@ -68,7 +68,7 @@
         <div class="wlfg-wrap clearfix">
             <label class="label-name" for="nick" >昵称</label>
             <div class="rlf-group">
-                <input type="text" name="nickname" id="nick"  autocomplete="off"  data-validate="nick"  class="input rlf-input rlf-input-nick" value="" placeholder="请输入昵称."/>
+                <input type="text" name="nickname" id="nick"  autocomplete="off"  data-validate="nick"  class="input rlf-input rlf-input-nick" value="<?php echo Session::get('username') ?>" placeholder="请输入昵称."/>
                 <p class="rlf-tip-wrap"></p>
             </div>
         </div>
@@ -78,7 +78,9 @@
             <div class="rlf-group">
                 <select class="input rlf-select" name="job" hidefocus="true" id="job">
                     <option value="">请选择职位</option>
-                        <option value="1" >页面重构设计</option>
+                    @foreach($zhiwei as $z => $w)
+                        <option value="<?= $w['z_id'] ?>" ><?= $w['z_name'] ?></option>
+                    @endforeach
                     </select>
                 <p class="rlf-tip-wrap"></p>
             </div>
@@ -178,10 +180,7 @@
                 tr = '';
                 tr += '<select class="input" id="city-select" hidefocus="true"><option value="0">选择城市</option>';
                 for(var i=0; i<obj.length; i++) {
-                    //alert(obj[i]['region_name']);
-                    // return false;
                     tr += "<option value='"+obj[i]['region_id']+"'>"+ obj[i]['region_name']+"</option>";
-                    //tr += "<option value='"+msg[i]['region_id']+"'>"+ msg[i]['region_name']+"</option>";
                 }
                 tr += '</select>';
                 $("#city").html(tr);
@@ -198,8 +197,6 @@
             url: "setprofile",
             data: "pro=" + pro,
             success: function (msg) {
-                //alert(msg)
-                //var obj=JSON.parse(msg);
                 tr = '';
                 tr += '<select id="county-select" class="input mro" hidefocus="true"><option value="0">选择区县</option>';
                 for(var i=0; i<msg.length; i++) {

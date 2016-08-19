@@ -116,7 +116,8 @@
 
 
 				<div class="course-list-img">
-                                    <img width="240" height="135" alt="" src="<?php                                         if($v['c_college']=="软工学院"){
+                                    <img width="240" height="135" alt="" src="<?php
+                                    if($v['c_college']=="软工学院"){
                                         echo "/images/logo/软工.jpg";
                                     }elseif($v['c_college']=="移动通信学院"){
                                         echo "/images/logo/移动.jpg";

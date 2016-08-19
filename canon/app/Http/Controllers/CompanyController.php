@@ -4,7 +4,8 @@
  *梁坤
  */
 namespace App\Http\Controllers;
-use DB;
+use Request,Validator,DB;
+use Session;
 class CompanyController extends Controller
 {
 	//公司列表
@@ -38,24 +39,24 @@ class CompanyController extends Controller
 		$id = isset($_GET['id'])?$_GET['id']:'';
 		//$state = session_status();
 		//print_r($_SESSION);die;
-		if(!isset($_SESSION)){		
-		session_start();
-		}
+		// if(!isset($_SESSION)){		
+		// session_start();
+		// }
 		if(!empty($id)){
-		$sql = "select click from shiti where s_id='$id'";
-		$click=DB::select($sql);
-		$click_1 =($click[0]['click'])+1;
-		$upd = "update shiti set click='$click_1' where s_id='$id'";
-		$upd_sav = DB::update($upd);
-		$_SESSION['id']=$id;
-	                        }
-		$id=$_SESSION['id'];
+			$sql = "select click from shiti where s_id='$id'";
+			$click=DB::select($sql);
+			$click_1 =($click[0]['click'])+1;
+			$upd = "update shiti set click='$click_1' where s_id='$id'";
+			$upd_sav = DB::update($upd);
+			Session::put('id',$id);
+	    }
+		$id=Session::put('id',$id);
 		$count=DB::table('exam')->where('company_id',"$id")->count();
 		if($count==0){
-		 echo "<script>alert('暂无试题');location.href='company'</script>";
-				}else{
-		$data=DB::table('exam')->where('company_id',"$id")->paginate(1);
-		return view('company/college_exam',['arr'=>$data]);
-				     }
+			echo "<script>alert('暂无试题');location.href='company'</script>";
+		}else{
+			$data=DB::table('exam')->where('company_id',"$id")->paginate(1);
+			return view('company/college_exam',['arr'=>$data]);
+		}
 	}
 }

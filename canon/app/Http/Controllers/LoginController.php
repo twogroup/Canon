@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use Request,Validator,DB;
+use Session;
 use Redirect;
 use open51094;
-session_start();
+
 
 class LoginController extends Controller
 {
@@ -21,8 +22,9 @@ class LoginController extends Controller
                 ->where('user_phone',"$u_name")
                 ->get();
             if($u_pwd == $users[0]['user_pwd']){
-                $_SESSION['u_id']=$users[0]['user_id'];
-                $_SESSION['username']=$users[0]['user_name'];
+                Session::put('username',$users[0]['user_name']);
+                Session::put('u_id',$users[0]['user_id']);
+                //echo Session::get('username');
                 return 1;
             }
         }else if(preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/', $u_name)){
@@ -30,8 +32,8 @@ class LoginController extends Controller
                 ->where('user_email',"$u_name")
                 ->get();
             if($u_pwd == $users[0]['user_pwd']){
-                $_SESSION['u_id']=$users[0]['user_id'];
-                $_SESSION['username']=$users[0]['user_name'];
+                Session::put('u_id',$users[0]['user_id']);
+                Session::put('username',$users[0]['user_name']);
                 return 1;
             }
         }
@@ -59,7 +61,7 @@ class LoginController extends Controller
                 }else{
                     $arr=DB::insert("insert into users(user_name,user_pwd,user_email,user_phone) values('$name','$pwd','$email','$phone');");
                     if($arr){
-                        $_SESSION['username']=$name;
+                        Session::put('username',$name);
                         echo "<script>alert('注册成功');location.href='index'</script>";
                     }else{
                         echo "<script>alert('注册失败');location.href='index'</script>";
@@ -71,7 +73,8 @@ class LoginController extends Controller
 
     //退出
     public function out(){
-        unset($_SESSION['username']);
+        Session::forget("username");
+        Session::forget("u_id");
         echo "<script>alert('退出成功');location.href='index'</script>";
     }
 
@@ -90,12 +93,12 @@ class LoginController extends Controller
         if ($data) {
             $qq_name = $data['user_nickname'];
             $user_id = $data['user_id'];
-            $_SESSION['u_id']=$user_id;
-            $_SESSION['username']=$qq_name;
+            Session::put('u_id',$user_id);
+            Session::put('username',$qq_name);
         }else{
             $res = DB::table('users')->insert(['user_nickname'=> $qq_name,'user_openid'=>$qq_uniq]);
-            $_SESSION['u_id']=$user_id;
-            $_SESSION['username']=$qq_name;
+            Session::put('u_id',$user_id);
+            Session::put('username',$qq_name);
         }
         return redirect('/index');
     }
@@ -114,12 +117,13 @@ class LoginController extends Controller
         if ($data) {
             $weibo_name = $data['user_nickname'];
             $user_id = $data['user_id'];
-            $_SESSION['u_id'] = $user_id;
-            $_SESSION['username'] = $weibo_name;
+            Session::put('u_id',$user_id);
+            Session::put('username',$weibo_name);
         }else{
             //$name="宝典".rand(10000,999);
             $res = DB::table('users')->insert(['user_nickname'=> $weibo_name,'user_openid'=>$weibo_uniq]);
-            $_SESSION['username'] = $weibo_name;
+            Session::put('u_id',$user_id);
+            Session::put('username',$weibo_name);
         }
         return redirect('/index');   
     }

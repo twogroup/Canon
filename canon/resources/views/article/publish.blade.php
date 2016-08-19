@@ -94,7 +94,7 @@
                     <div class="tag-box clearfix">
                     <?php foreach($a_lei as $k=>$v){?>
                         <span tag-id="12" name="al_name" id="al_name" value="<?php echo $v['al_name']?>"><?php echo $v['al_name']?></span>
-                    <?php } ?>
+                    <?php } ?>z
                     </div>
                 </div><!--tag-selector-wrap end-->
             </div><!--tag-selector end-->

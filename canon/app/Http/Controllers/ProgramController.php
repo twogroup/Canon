@@ -4,7 +4,8 @@
  *梁坤
  */
 namespace App\Http\Controllers;
-use DB;
+use Request,Validator,DB;
+use Session;
 class ProgramController extends Controller
 {
 	/*

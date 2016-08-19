@@ -12,7 +12,9 @@ class UserController extends Controller
             $address = DB::table('region')
                     ->where('parent_id' , '1')
                     ->get();
-            return view('user/setprofile',['address'=>$address]);
+
+            $zhiwei = DB::table('zhiwei')->get();
+            return view('user/setprofile',['address'=>$address,'zhiwei'=>$zhiwei]);
         }else{
             $address = DB::table('region')
                     ->where('parent_id' , $pro)

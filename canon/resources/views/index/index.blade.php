@@ -64,25 +64,26 @@
     <div class="video-mask"></div>
     <div id="js-video-close" class="video-close"></div>
 </div>
-
 <div id="mooc-dynamic" class="dynamic bg-grey idx-minwidth" style=" margin-top:20px;">
     <div id="dynamic-wrap" class="dynamic-wrap idx-width">
         <div id="dynamic-left" class="dynamic-left"></div>
         <div id="dynamic-right" class="dynamic-right"></div>
-
-
         <ul class="dynamic-group clearfix">
-
-
-
-            <li><a href="#">
+            <li>
+                <a href="#">
                     <img src="picture/zzzz.jpg" alt="手机APP">
-                </a></li>
-
-            <li><a href="#" target="_blank"><img src="picture/5677ae970001c70404000200.jpg" alt="苹果表"></a></li>
-
-            <li><a href="#" target="_blank">
-                    <img src="picture/56a59f870001bd2e04000200.jpg" alt="前端学习计划"></a></li>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <img src="picture/5677ae970001c70404000200.jpg" alt="苹果表">
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <img src="picture/56a59f870001bd2e04000200.jpg" alt="前端学习计划">
+                </a>
+            </li>
         </ul>
 
     </div>
@@ -91,22 +92,18 @@
 <!--试题开始-->
 <div class="icourse">
     <div class="incourse-wrap idx-width">
-        <h2 class="icourse-title hide-text">试题</h2>
+        <h2 class="icourse-title">试题</h2>
         <ul class="icourse-course clearfix">
             <?php foreach($shi as $k=>$v){?>
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img src="http://www.canon.com/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
-            <span class="l ">
-                              <?php echo $v['addtime']?>
-                          </span>
-            <span class="r">
-              课程时长：29分
-            </span>
+                        <span class="l "><?php echo $v['addtime']?></span>
+                        <span class="r">课程时长：29分</span>
                     </div>
                     <div class="icourse-tips clearfix">
                         <h2><?php echo $v['s_logo']?></h2>
@@ -115,8 +112,7 @@
                     </div>
                 </a>
             </li>
-                <?php } ?>
-
+            <?php } ?>
         </ul>
     </div>
 </div>
@@ -125,22 +121,18 @@
 <!--招聘开始 -->
 <div class="icourse">
     <div class="incourse-wrap idx-width">
-        <h2 class="icourse-title hide-text">招聘</h2>
+        <h2 class="icourse-title">招聘</h2>
         <ul class="icourse-course clearfix">
             <?php foreach($shi as $k=>$v){?>
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img src="http://www.canon.com/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
-            <span class="l ">
-                              <?php echo $v['addtime']?>
-                          </span>
-            <span class="r">
-              课程时长：29分
-            </span>
+                        <span class="l "><?php echo $v['addtime']?></span>
+                        <span class="r">课程时长：29分</span>
                     </div>
                     <div class="icourse-tips clearfix">
                         <h2><?php echo $v['s_logo']?></h2>
@@ -149,33 +141,27 @@
                     </div>
                 </a>
             </li>
-                <?php } ?>
-
+            <?php } ?>
         </ul>
     </div>
 </div>
 <!--招聘结束 -->
 
 <!--面试方法开始 -->
-
 <div class="icourse">
     <div class="incourse-wrap idx-width">
-        <h2 class="icourse-title hide-text">面试方法</h2>
+        <h2 class="icourse-title">面试方法</h2>
         <ul class="icourse-course clearfix">
             <?php foreach($shi as $k=>$v){?>
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img src="http://www.canon.com/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
-            <span class="l ">
-                              <?php echo $v['addtime']?>
-                          </span>
-            <span class="r">
-              课程时长：29分
-            </span>
+                        <span class="l "><?php echo $v['addtime']?></span>
+                        <span class="r">课程时长：29分</span>
                     </div>
                     <div class="icourse-tips clearfix">
                         <h2><?php echo $v['s_logo']?></h2>
@@ -184,34 +170,27 @@
                     </div>
                 </a>
             </li>
-                <?php } ?>
-
+            <?php } ?>
         </ul>
     </div>
 </div>
 <!--面试方法结束 -->
 
 <!--简历开始 -->
-
-
 <div class="icourse">
     <div class="incourse-wrap idx-width">
-        <h2 class="icourse-title hide-text">简历</h2>
+        <h2 class="icourse-title">简历</h2>
         <ul class="icourse-course clearfix">
             <?php foreach($shi as $k=>$v){?>
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img src="http://www.canon.com/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
-            <span class="l ">
-                              <?php echo $v['addtime']?>
-                          </span>
-            <span class="r">
-              课程时长：29分
-            </span>
+                        <span class="l "><?php echo $v['addtime']?></span>
+                        <span class="r">课程时长：29分</span>
                     </div>
                     <div class="icourse-tips clearfix">
                         <h2><?php echo $v['s_logo']?></h2>
@@ -220,16 +199,13 @@
                     </div>
                 </a>
             </li>
-                <?php } ?>
-
+            <?php } ?>
         </ul>
     </div>
 </div>
 <!--面试简历结束 -->
 
 <!--答疑开始 -->
-
-
 <div class="icourse">
     <div class="incourse-wrap idx-width">
         <h2 class="icourse-title hide-text">答疑</h2>
@@ -238,16 +214,12 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img src="http://www.canon.com/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
-            <span class="l ">
-                              <?php echo $v['addtime']?>
-                          </span>
-            <span class="r">
-              课程时长：29分
-            </span>
+                        <span class="l "><?php echo $v['addtime']?></span>
+                        <span class="r">课程时长：29分</span>
                     </div>
                     <div class="icourse-tips clearfix">
                         <h2><?php echo $v['s_logo']?></h2>
@@ -256,150 +228,18 @@
                     </div>
                 </a>
             </li>
-                <?php } ?>
-
+            <?php } ?>
         </ul>
     </div>
 </div>
 <!--答疑结束 -->
-        <h2 class="mobile-title hide-text">手机宝典，随时随地学习！</h2>
-        <div class="mobile-entry">
-            <a href="http://www.imooc.com/mobile/app" target="_blank"><!-- Android版 -->手机版</a>
-            <a href="http://www.imooc.com/mobile/app?curr=ipad" target="_blank"><!-- IOS版 -->iPad版</a>
-            <span id="js-mobile-trigger" class="mobile-trigger"></span>
-        </div>
-<!--script-->
-<!--<SCRIPT src="../js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
-<script>
-    $("#button").click(function(){
-        var username=$('#username').val();
-        var pwd=$('#pwd').val();
-        var email=$("#email").val();
-        var phone=$("#phone").val();
-        if(username == ''){
-            $('#name_sp').html('用户名不能为空');
-            ajax.abort();//终止请求动作.
-        }else if(pwd == ''){
-            $('#pwd_sp').html('密码不能为空');
-            ajax.abort();//终止请求动作.
-        }else if(email == ''){
-            $('#email_sp').html('邮箱不能为空');
-            ajax.abort();//终止请求动作.
-        }else if(phone == ''){
-            $("#phone_sp").html('手机号不能为空');
-            ajax.abort();//终止请求动作.
-        }
-    })
-    $('#username').blur(function(){
-        var username=$('#username').val();
-        var reg = /^[0-9a-zA-Z\u4e00-\u9fa5_]{2,16}$/;
-        if(reg.test(username)) {
-            $('#name_sp').html('');
-        } else if(username=='') {
-            $('#name_sp').html('用户名不能为空');
-        } else {
-            $('#name_sp').html('只能中英文，数字，下划线,3-16位');
-        }
-    })
-    $('#pwd').blur(function(){
-        var pwd=$(this).val();
-        var reg = /^[a-zA-Z]\w{5,15}$/;
-        if(reg.test(pwd)) {
-            $('#pwd_sp').html('');
-        } else if(pwd==''){
-            $('#pwd_sp').html('密码不能为空');
-        } else {
-            $('#pwd_sp').html('以字母开头，只能包含字符、数字和下划线');
-        }
-    })
-    $('#email').blur(function(){
-        var email=$("#email").val();
-        var reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        if(reg.test(email)) {
-            $("#email_sp").html('')
-        } else if(email=='') {
-            $('#email_sp').html('邮箱不能为空');
-        } else {
-            $("#email_sp").html('邮箱格式错误')
-        }
-    })
-    $("#phone").blur(function(){
-        var phone=$("#phone").val();
-        var reg = /^[1][358][0-9]{9}$/;
-        if(reg.test(phone)) {
-            $("#phone_sp").html('')
-        } else if(phone=='') {
-            $("#phone_sp").html('手机号不能为空');
-        } else {
-            $("#phone_sp").html('手机号必须以13、15、18开头');
-        }
-    })
 
-    function show(){
-        if(this.aa.password.type='password'){
-            box.innerHTML = "<input type='text' name='password'  value="+this.aa.password.value+">";
-            box3.innerHTML = "<a href='javascript:void(0)' onclick='hid();'>隐藏密码</a>";
-        }
-    }
-    function hid(){
-        if(this.aa.password.type='text'){
-            box.innerHTML = "<input type='password' name='password'  value="+this.aa.password.value+">";
-            box3.innerHTML = "<a href='javascript:void(0)' onclick='show();'>显示密码</a>";
-        }
-    }
-
-
-    $("#u_name").blur(function() {
-        var u_name = $("#u_name").val();
-        if (u_name!='') {
-            var reg = /^[1][358][0-9]{9}$/;
-            var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-            if(reg.test(u_name) || email_reg.test(u_name)){
-                $("#sp_name").html('')
-            }else{
-                $("#sp_name").html('请输入正确的手机号或邮箱')
-            }
-        }else{
-            $("#sp_name").html('请输入正确的手机号或邮箱')
-        }
-    })
-
-    $("#password").blur(function() {
-        var u_name = $("#u_name").val()
-        var u_pwd = $("#password").val()
-        if(u_pwd!=''){
-            var reg = /^[1][358][0-9]{9}$/;
-            var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-            if(reg.test(u_name) ||　email_reg.test(u_name)) {
-                $("#sp_pwd").html('')
-            }
-        }else{
-            $("#sp_pwd").html('请输入6-16位密码，不能使用空格')
-        }
-    })
-
-    $("#sub").click(function(){
-        var u_name=$("#u_name").val();
-        var u_pwd=$("#password").val();
-        var reg = /^[1][358][0-9]{9}$/;
-        var email_reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        if(u_name==''){
-            $("#sp_name").html('请输入正确的手机号或邮箱');
-            ajax.abort();//终止请求动作.
-        }else if(u_pwd==''){
-            $("#sp_pwd").html('请输入6-16位密码，不能使用空格');
-            ajax.abort();//终止请求动作.
-        }
-        $.post("name_deng",{'u_name':u_name,'u_pwd':u_pwd}, function (msg) {
-            if(msg==1){
-                location.href="index";
-            }else{
-                $("#sp_pwd").html('密码错误');
-                ajax.abort();//终止请求动作.
-            }
-        })
-    })
-</script>-->
+<h2 class="mobile-title hide-text">手机宝典，随时随地学习！</h2>
+<div class="mobile-entry">
+    <a href="http://www.imooc.com/mobile/app" target="_blank"><!-- Android版 -->手机版</a>
+    <a href="http://www.imooc.com/mobile/app?curr=ipad" target="_blank"><!-- IOS版 -->iPad版</a>
+    <span id="js-mobile-trigger" class="mobile-trigger"></span>
+</div>
 @include('layouts.footer')
 </body>
 </html>

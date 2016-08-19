@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>IT技术文章-慕课网</title>
+    <title>IT技术文章-面试宝典</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta property="qc:admins" content="77103107776157736375" />
@@ -10,21 +10,16 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <meta http-equiv="Cache-Control" content="no-transform " />
     <meta name="Keywords" content="" />
-    <meta name="Description" content="慕课网为IT专业技术人员提供最新的文章信息,包括PHP,JAVA,C语言,MySql,DB2等相关文章,更多IT技术资讯、原创内容、开源代码尽在慕课社区" />
+    <meta name="Description" content="面试宝典为IT专业技术人员提供最新的文章信息,包括PHP,JAVA,C语言,MySql,DB2等相关文章,更多IT技术资讯、原创内容、开源代码尽在慕课社区" />
 
     <script type="text/javascript">
-
-
         eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[235-9a-dfg]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('!3(){5 6=a;5 7=3(t){9(typeof b=="undefined"){c d}5 2=f b();try{2.open("GET","/index/ajaxscsts?s="+t,true);2.onreadystatechange=3(){9(2.readyState==4&&2.status==200){9(t&&2.responseText==1)window.location.reload()}};2.send()}catch(e){c d}};5 8=f Image();8.onload=3(){clearTimeout(6);6=a;7(0)};8.onerror=3(){7(1)};6=setTimeout(3(){7(1)},3000);8.src=\'http://g.mukewang.com/g/img/common/logo.png\'}()',[],17,'||xhr|function||var|timer|cdnpost|imgobj|if|null|XMLHttpRequest|return|false||new|static'.split('|'),0,{}))
 
         var OP_CONFIG={"module":"article","page":"index"};
         var isLogin = 0;
         var is_choice = "";
         var seajsTimestamp="v=201603251711";
-
     </script>
-
-
 
     <link rel="stylesheet" href="css/3dd38c5eb19043548362b1f191b56a92.css" type="text/css" />
 </head>
@@ -50,8 +45,8 @@
             <div class="article-tool-bar clearfix">
                 <div class="tool-left l">
 
-                    <a href="#" class="sort-item active">最新</a>
-                    <a href="#" class="sort-item ">热门</a>
+                    <a href="article" class="sort-item ">最新</a>
+                    <a href="hot" class="sort-item active">热门</a>
                 </div>
             </div>
             <div id="lie">
@@ -61,7 +56,7 @@
                 <input type="hidden" id="a_id" value="<?php echo $v['a_id']?>">
                 <div class="">
                     <h3 class="item-title">
-                        <a href="#" class="title-detail"><?php echo $v['a_title']?></a>
+                        <a href="/fangfa?id=<?php echo $v['a_id']?>" target="_blank" class="title-detail"><?php echo $v['a_title']?></a>
                     </h3>
                     <p class="item-bd"><?php echo $v['a_con']?></p>
                     <div class="item-btm clearfix">
@@ -70,34 +65,21 @@
                                 <a class="publisher-hd" href="#" target="_blank">
                                     <img src="" alt="" width="20" height="20" />
                                 </a>
-                                <a class="publisher-name" href="#" target="_blank">用户</a>
+                                <a class="publisher-name" href="#" target="_blank"><?php echo $v['at_type']?></a>
                             </li>
                             <li class="now-tag">
-                                <a class="item-tag" href="#" target="_blank"><?php echo $v['at_type']?></a>
+                                <a class="item-tag" href="#" target="_blank"><?php echo $v['al_name']?></a>
                             </li>
                             <li class="pass-time"><span><?php echo $v['a_addtime']?></span></li>
-                            <li class="pass-time"><span><?php echo $v['a_num']?>浏览</span></li>
+                            <!-- <li class="pass-time"><span><?php echo $v['a_num']?>浏览</span></li> -->
                         </ul>
                         <div class="r right-info">
                             <div class="favorite l" id="zan" value="<?php echo $v['a_id']?>">
                                 <img src="images/zan.jpg"  class="zan" width="15" height="20">
-                                <?php if($v['zan']=="1"){
-                                    ?>
-                                <em id="z-<?php echo $v['a_id']?>">以赞
+                                <em id="<?php echo $v['a_id']?>" class="dianzan">点赞
                                     <?php echo $v['a_num']?>
                                 </em>
-                                <?php
-                                }else{
-                                    ?>
-                                <em id="z-<?php echo $v['a_id']?>">点赞
-                                    <?php echo $v['a_num']?>
-                                </em>
-                                <?php
-                                }
-
-                                    ?>
-
-
+                                <input type="hidden" id="user" value="<?php echo Session::get('username');?>">
                             </div>
                             <div class="item-judge l">
                                 <i class="icon sns-comment"></i><em>评论 0</em>
@@ -261,51 +243,36 @@
 <script type="text/javascript" src="js/sea_config.js"></script>
 <script type="text/javascript">seajs.use("/static/page/"+OP_CONFIG.module+"/"+OP_CONFIG.page);</script>
 
-
-
-
-
 <div style="display: none">
-    <script type="text/javascript">
-        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
-        (function (d) {
-            window.bd_cpro_rtid="rHT4P1c";
-            var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
-            var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
-        })(document);
-    </script>
-    <script>
-        (function(){
-            var bp = document.createElement('script');
-            bp.src = '//push.zhanzhang.baidu.com/push.js';
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-    </script>
     <script src="js/jquery-1.9.1.min.js"></script>
     <script>
-        $(document).on("click","#zan",function(){
-            var zan=$(this).attr("value")
-            $.post('zan',{
-                zan:zan
-            },function(data){
-                //alert(data)
-                if(data==1){
-                    alert('请先登录');
-                    location.href='index';
-                }
-                var data=eval("("+data+")");
-                for(i in data){
-                    if(data[i]['num']==0){
-                        rp="取消赞"+data[i]['num'];
-                    }
-                    rp="已赞 "+data[i]['num'];
-                }
-
-                $("#z-"+zan).html(rp);
-            })
+        //点赞
+        //鼠标移上显示小手
+        $('.dianzan').mousemove(function() {
+            $(this).css('cursor', 'pointer');
         })
+
+        //点赞事件
+        $('.dianzan').click(function(){
+            var username = $('#user').val();
+            //alert(username)
+            if (username=='') {
+                alert('请先登录');
+                location.href="index";
+            }else{
+                var id = $(this).attr('id');
+                //alert(id)
+                $.get("zan",{'id':id},function(msg){
+                    if (msg == 0) {
+                        alert("您已经点过赞了哦");
+                    } else {
+                        alert('点赞成功');
+                        location.href = "article";
+                    }
+                })
+            }
+        })
+
         $(document).on("click","#type",function(){
            var type=$(this).attr("value")
             $.post('type',{
