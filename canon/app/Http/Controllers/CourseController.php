@@ -160,8 +160,8 @@ class CourseController extends Controller
 
     public function study(){
         header('content-type:text/html;charset=utf-8');
-
-        $arr=DB::select("select * from video ");
+        $arr=DB::table('video')->paginate(2);
+        //$arr=DB::select("select * from video ");
         //print_r($arr);die;
         return view('course/video',['list'=>$arr]);
     }

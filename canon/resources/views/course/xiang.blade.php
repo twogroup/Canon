@@ -113,7 +113,9 @@ var GC = {
       <i class="split-line r"></i>
      
       <?php  if($arr['c_concern']==1){ ?>
-       <span id="spa1"><a href="javascript:concer({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="cone"> 已关注 </a></span>
+       <span id="spa1">
+       <a href="javascript:concer({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="cone"> 已关注 </a>
+       </span>
 
        <?php }else{ ?>
         <span id="spa0"><a href="javascript:concern({{$arr['c_id']}})" data-cmd="follow" class="follow-action r js-follow-action" data-cid="85" id="concern"> 关注 </a></span>

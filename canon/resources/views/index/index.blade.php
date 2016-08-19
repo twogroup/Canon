@@ -76,13 +76,13 @@
 
 
             <li><a href="#">
-                    <img src="picture/zzzz.jpg" alt="手机APP">
+                    <img data-original="picture/zzzz.jpg" alt="手机APP">
                 </a></li>
 
-            <li><a href="#" target="_blank"><img src="picture/5677ae970001c70404000200.jpg" alt="苹果表"></a></li>
+            <li><a href="#" target="_blank"><img data-original="picture/5677ae970001c70404000200.jpg" alt="苹果表"></a></li>
 
             <li><a href="#" target="_blank">
-                    <img src="picture/56a59f870001bd2e04000200.jpg" alt="前端学习计划"></a></li>
+                    <img data-original="picture/56a59f870001bd2e04000200.jpg" alt="前端学习计划"></a></li>
         </ul>
 
     </div>
@@ -97,7 +97,7 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img data-original="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
@@ -131,7 +131,7 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img data-original="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
@@ -166,7 +166,7 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img data-original="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
@@ -202,7 +202,7 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img data-original="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
@@ -238,7 +238,7 @@
             <li>
                 <a  href="college_exam?id=<?php echo $v['s_id']?>" target="_blank">
                     <div class="icourse-img">
-                        <img src="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
+                        <img data-original="http://123.56.249.121/android/web/<?php echo $v['s_img']?>" alt="">
                     </div>
                     <div class="icourse-intro clearfix">
                         <p>公司:<?php echo $v['company_name']?></p>
@@ -403,3 +403,11 @@
 @include('layouts.footer')
 </body>
 </html>
+<!--图片延时加载-->
+<script src="../js/jquery-1.11.0.min.js" charset="utf-8"></script>
+<script src="../js/jquery.lazyload.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+  $(function($) {
+      $("img").lazyload({effect: "fadeIn",container: $("#index")});
+  });
+</script>
