@@ -13,11 +13,12 @@
 <meta name="description" content="慕课网（IMOOC）是学习编程最简单的免费平台。慕课网提供了丰富的移动端开发、php开发、web前端、html5教程以及css3视频教程等课程资源。它富有交互性及趣味性，并且你可以和朋友一起编程。" />
 <link rel="stylesheet" href="/css/base.css" type="text/css" />
 <script type="text/javascript">
-    var OP_CONFIG={"module":"user","page":"setprofile","userInfo":{"uid":3071208,"nickname":"\u51e4\u9896","head":"http:\/\/img.mukewang.com\/images\/unknow-80.png","usertype":"1","roleid":0}};
-    var isLogin = 1;
-    var is_choice = "";
-    var seajsTimestamp="v=201604211612";
-</script>
+
+      var OP_CONFIG={"module":"user","page":"setprofile","userInfo":{"uid":3071208,"nickname":"\u51e4\u9896","head":"http:\/\/img.mukewang.com\/images\/unknow-80.png","usertype":"1","roleid":0}};
+  var isLogin = 1;
+var is_choice = "";
+  var seajsTimestamp="v=201604211612";
+  </script>
  
 <!--
 <link rel="stylesheet" href="/static/component/logic/login/login-regist.css" type="text/css" />
@@ -34,30 +35,32 @@
 
 <div class="settings-cont clearfix">
 
-<div class="setting-left l">
+  <div class="setting-left l">
     <ul class="wrap-boxes">
-        <li class="active">
-            <a href="/user/setprofile" class="onactive">个人资料</a>
-        </li>
-        <li >
-            <a href="/user/setavator">头像设置</a>
-        </li> 
-        <li >
-            <a href="/user/setphone">手机设置</a>
-            <span class='unbound'>未绑定</span>
-        </li>
-        <li >
-            <a href="/user/setverifyemail">邮箱验证</a>
-            <span class='unbound'>未绑定</span>
-        </li>
-        <li >
-            <a href="/user/setresetpwd">修改密码</a>
-        </li>
-        <li >
-            <a no-pjajx href="/user/setbindsns">绑定帐号</a>
-        </li>
+      <li class="active">
+        <a href="/user/setprofile" class="onactive">个人资料</a>
+      </li>
+      <li >
+         <a href="/user/setavator">头像设置</a>
+       </li>
+       
+      <li >
+        <a href="/user/setphone">手机设置</a>
+                    <span class='unbound'>未绑定</span>
+              </li>
+      
+      <li >
+        <a href="/user/setverifyemail">邮箱验证</a>
+                    <span class='unbound'>未绑定</span>
+              </li>
+      <li >
+        <a href="/user/setresetpwd">修改密码</a>
+      </li>
+      <li >
+        <a no-pjajx href="/user/setbindsns">绑定帐号</a>
+      </li>
     </ul>
-</div>
+  </div>
   <div class="setting-right">
     <div class="setting-right-wrap wrap-boxes settings" >
         
@@ -86,20 +89,53 @@
             </div>
         </div>
         
-        <div class="wlfg-wrap clearfix" style="width: 550px;">
+        <div class="wlfg-wrap clearfix">
             <label class="label-name" for="province-select">城市</label>
-            <div class="rlf-group profile-address"  style="width: 430px;">
+            <div class="rlf-group profile-address">
                 <select id="province-select" class='input' hidefocus="true">
                     <option value="0">选择省份</option>
-                    @foreach($address as $k => $v)
-                        <option value="<?= $v['region_id']?>"><?= $v['region_name']?></option>
-                    @endforeach
-                </select>
-                <span id="city"></span>  
-                <span id="county"></span>
-
-                
-
+                                            <option value="1">北京</option>
+                                            <option value="2">天津</option>
+                                            <option value="3">河北</option>
+                                            <option value="4">山西</option>
+                                            <option value="5">内蒙古</option>
+                                            <option value="6">辽宁</option>
+                                            <option value="7">吉林</option>
+                                            <option value="8">黑龙江</option>
+                                            <option value="9">上海</option>
+                                            <option value="10">江苏</option>
+                                            <option value="11">浙江</option>
+                                            <option value="12">安徽</option>
+                                            <option value="13">福建</option>
+                                            <option value="14">江西</option>
+                                            <option value="15">山东</option>
+                                            <option value="16">河南</option>
+                                            <option value="17">湖北</option>
+                                            <option value="18">湖南</option>
+                                            <option value="19">广东</option>
+                                            <option value="20">海南</option>
+                                            <option value="21">广西</option>
+                                            <option value="22">甘肃</option>
+                                            <option value="23">陕西</option>
+                                            <option value="24">新疆</option>
+                                            <option value="25">青海</option>
+                                            <option value="26">宁夏</option>
+                                            <option value="27">重庆</option>
+                                            <option value="28">四川</option>
+                                            <option value="29">贵州</option>
+                                            <option value="30">云南</option>
+                                            <option value="31">西藏</option>
+                                            <option value="32">台湾</option>
+                                            <option value="33">澳门</option>
+                                            <option value="34">香港</option>
+                                            <option value="100">其他</option>
+                                    </select>
+                <select class='input' id="city-select" hidefocus="true">
+                    <option value="0">选择城市</option>
+                                    </select>
+                <select class='input mr0' id="area-select" hidefocus="true">
+                    <option value="0">选择区县</option>
+                                    </select>
                 <p class="rlf-tip-wrap"></p>
             </div>
         </div>
@@ -152,11 +188,15 @@
     <a class="elevator-top" href="javascript:;" style="display:none" id="backTop"></a>
 </div>
 
+
+
 <!--script-->
 <script src="/jss/ssologin.js"></script>
 <script type="text/javascript" src="/js/sea.js"></script>
 <script type="text/javascript" src="/js/sea_config.js?v=201604211612"></script>
 <script type="text/javascript">seajs.use("/static/page/"+OP_CONFIG.module+"/"+OP_CONFIG.page);</script>
+
+ 
 
 
 <div style="display: none">

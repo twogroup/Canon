@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB,Request,Validator;
 
 class UserController extends Controller
 {

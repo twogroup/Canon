@@ -29,12 +29,28 @@ class ArticleController extends Controller
         return view('article/article',['at_type'=>$at_type,'article'=>$article]);
     }
     
-
+    /**
+     * 点击写文章
+     * [publish description]
+     * @return [type] [description]
+     */
     public function publish(){
-        $at_type=DB::table('ar_type')->get();
-        //print_r($at_type);die;
-        $a_lei=DB::table('a_lei')->get();
-        return view('article/publish',['ar_type'=>$at_type,'a_lei'=>$a_lei]);
+        //判断session是否为空 开启session 
+        if(!isset($_SESSION)){
+            session_start();
+            }
+        header('Content-Type: text/html; charset=utf-8');
+        //根据session判断登陆
+        if(empty($_SESSION['username'])){
+            echo "<script>alert('请先登录'),location.href='index'</script>";die;
+            }else{
+
+
+            $at_type=DB::table('ar_type')->get();
+            //print_r($at_type);die;
+            $a_lei=DB::table('a_lei')->get();
+            return view('article/publish',['ar_type'=>$at_type,'a_lei'=>$a_lei]);
+            }
     }
     
     

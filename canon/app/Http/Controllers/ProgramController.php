@@ -22,8 +22,10 @@ class ProgramController extends Controller
             }
             $all[$key]['two']=$two;
         }
-        //print_r($all);die;
-    	$data=DB::table('recruit')->orderBy('r_id','desc')->paginate(10);
+       
+        //header('Content-Type: text/html; charset=utf-8');
+         //print_r($all);die;
+    	$data=DB::table('recruit')->orderBy('r_id','desc')->paginate(2);
         //print_r($data);die;
         return view('program/program',['all'=>$all,'data'=>$data]);
     }

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <style>
     .course-brief ul li{float:left; width:100px;}
+    .barclearfix ul li{margin-top: 20px;}
 </style>
 <title>
 
@@ -177,16 +178,22 @@ var GC = {
       </div>
       
       <div class="course-outline">
+     
         <div class="barclearfix">
-           <ul style="line-height:30px;">
+           <ul>
          <?php foreach ($list as $key => $v) {?>
          
            <li><a href="javascript:void(0)" path="<?= $v['v_path']?>" class="play2"><?php echo $v['v_name']?></a></li>
         <?php }?>
-         </ul>
+         </ul> 
+          <span class="sp"><h4><?php echo $list->render();?></h4></span>
+   </div>
+    <style>
 
-  
+        .sp li{float: left;margin-left: 50px;}
 
+    </style>  
+   
   <script>
   //点击获取视频
   $('.play2').click(function(){
@@ -201,7 +208,7 @@ var GC = {
 
   </script>
 
-        </div>
+       
         <!--可以播放视频-->
         <div class="outline-list">
                       <ul>

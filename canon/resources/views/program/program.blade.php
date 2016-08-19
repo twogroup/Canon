@@ -15,7 +15,12 @@
     <link rel="stylesheet" type="text/css" href="css/main.html_aio_2ff5795.css">
     <link rel="stylesheet" type="text/css" href="css/widgets_cd857e8.css">
     <link rel="stylesheet" type="text/css" href="css/main.html_aio_2_d6c0dcf.css">
-<script src="css/jquery.validate.min_343f475.js" class="lazyload" charset="utf-8"></script><link href="css/loginpop_8eb0b34.css" rel="stylesheet" class="lazyload" charset="utf-8"><script src="js/lagou_5427c0e.js" class="lazyload" charset="utf-8"></script><script src="js/c.js" type="text/javascript"></script>
+
+<!--<script src="css/jquery.validate.min_343f475.js" class="lazyload" charset="utf-8"></script>
+<link href="css/loginpop_8eb0b34.css" rel="stylesheet" class="lazyload" charset="utf-8">
+<script src="js/lagou_5427c0e.js" class="lazyload" charset="utf-8"></script>
+-->
+<script src="js/c.js" type="text/javascript"></script>
 
 
 
@@ -50,13 +55,7 @@
        
 
     <!-- 全部 -->
-
-
-
-    
-
     </div><!--end #header-->
-
 
     <!-- 页面主体START -->
     <div class="container clearfix" id="container" style="min-height: 844px; margin-top:20px; margin-left:150px;">
@@ -96,33 +95,29 @@
  </div> 
 </div>
 
-
-
-
-
-
-
-
         <div class="content">
             <ul class="job_tab">
         <li class="current" data-lg-tj-id="4X00" data-lg-tj-no="idnull" data-lg-tj-cid="idnull">热门职位</li>
         <li data-lg-tj-id="gD00" data-lg-tj-no="idnull" data-lg-tj-cid="idnull">最新职位</li>
+        <li data-lg-tj-id="toudi" data-lg-tj-no="idnull" data-lg-tj-cid="idnull">简历投递</li>
 </ul>
 <div id="hotList" class="clearfix">
-    
+ 
     <div class="hot_posHotPosition position_list init_joblist" id="position">
+
         <ul class="clearfix">
         @foreach($data as $q=>$w)
             <li class="position_list_item" data-jobid="1621796" data-positionid="1621796" data-salary="25k-40k" data-company="51Talk 无忧英语" data-positionname="运营总监" data-companyid="119153">
 
 
             
-
                 <div class="pli_top">
+
                     <div class="fl pli_top_l">
                         <div class="position_name">
                             <!--  -->
-            <h2 class="fl" style=" font-size:20px;"><a href="etc_sel?id={{$w['r_id']}}" target="_blank" class="position_link fl wordCut" data-index="0" data-lg-tj-id="4m00" data-lg-tj-no="0001" data-lg-tj-cid="1621796">{{$w['position_name']}}<span>[北京][{{$w['c_region']}}]</span></a></h2>
+            <h2 class="fl" style=" font-size:20px;">
+            <a href="etc_sel?id={{$w['r_id']}}" target="_blank" class="position_link fl wordCut" data-index="0" data-lg-tj-id="4m00" data-lg-tj-no="0001" data-lg-tj-cid="1621796">{{$w['position_name']}}<span>[北京][{{$w['c_region']}}]</span></a></h2>
                             <!-- 此处需要和后台确认 -->
                             <span class="fl">{{$w['release_date']}}</span>
                         </div>
@@ -147,21 +142,24 @@
                     <div class="pli_btm_r fl">
                           <span>{{$w['r_number']}}</span>
                           <span>{{$w['r_type']}}</span>                                    
-                                                                        </div>
+                    </div>
                 </div>
-
-            
-
-
-
+                
+       
             </li>
-                @endforeach       
-                                    </ul>
-        {{$data->render()}}
+                @endforeach   
+        
+                         </ul>
+<span class="fenye"><h3><?php echo $data->render()?></h3></span>
     </div>
+
 </div>
-
-
+<!--定义分页样式-->
+<style>
+    
+    .fenye li{float: left;margin-left: 50px;}
+</style>
+ 
 
 
         </div>
@@ -180,6 +178,7 @@
 
 
 <div id="feedback-con" style="bottom: 80px;">
+
     <div class="pfb-pho-close">
         <div class="pfb-pho"></div>
         <div class="pfb-close"></div>
@@ -215,11 +214,13 @@
 
 
 <script type="text/javascript" src="js/vendor_d53d12d.js"></script>
+
 <script type="text/javascript">/*resourcemap*/
 require.config({paths:{
   "common/components/template-helper/main": "http://pstatic.lagou.com/www/static/common/components/template-helper/main_4b1b867",
   "common/widgets/common/msgPopup": "http://pstatic.lagou.com/www/static/common/widgets/common/msgPopup_3bbfd4a"
 }});</script>
+
 <script type="text/javascript" src="js/main.html_aio_4787e07.js"></script>
 <script type="text/javascript" src="js/widgets_5256a4e.js"></script><script src="js/h.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/userinfo_7f282e9.js"></script>
