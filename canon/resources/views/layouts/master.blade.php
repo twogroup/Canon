@@ -67,17 +67,17 @@
                 </li>
                 <li class="set_btn user-card-box">
                     <a target="_self" href="/u/3071208/courses" action-type="my_menu" class="user-card-item" id="header-avator">
-                        <img width="40" height="40" src="/images/unknow-40.png">
+                        <img width="40" height="40" src="<?php echo Session::get('img'); ?>">
                         <i style="display: none;" class="myspace_remind"></i>
                         <span style="display: none;">动态提醒</span>
                     </a>
                     <div class="g-user-card">
                         <div class="card-inner">
                             <div class="card-top">
-                                <a href="/u/3071208/courses">
-                                    <img class="l" alt="<?php echo Session::get('username'); ?>" src="/images/unknow-160.png">
+                                <a href="/user/setprofile">
+                                    <img class="l" alt="<?php echo Session::get('username'); ?>" src="<?php echo Session::get('img'); ?>">
                                 </a>
-                                <a href="/u/3071208/courses">
+                                <a href="/user/setprofile">
                                     <span class="name text-ellipsis"><?php echo Session::get('username'); ?></span>
                                 </a>
                                 <p class="meta">

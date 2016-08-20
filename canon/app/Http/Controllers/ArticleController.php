@@ -12,7 +12,7 @@ use Session;
 class ArticleController extends Controller
 {
     /*
-    *   文章最新
+    *   文章列表显示 和 最新
     */
     public function article(){
         $at_type=DB::table('ar_type')->get();
@@ -21,12 +21,18 @@ class ArticleController extends Controller
                 ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
                 ->orderBy('a_id' , 'desc')
                 ->paginate(5);
+        $tui = DB::table('article')
+                ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
+                ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
+                ->orderBy('a_num' , 'desc')
+                ->limit(2)
+                ->get();
         if(empty(Session::get('username'))){
             $username=0;
         }else{
             $username=Session::get('username');
         }
-        return view('article/article',['at_type'=>$at_type,'article'=>$article]);
+        return view('article/article',['at_type'=>$at_type,'article'=>$article,'tui'=>$tui]);
     }
     
     /**
@@ -36,21 +42,15 @@ class ArticleController extends Controller
      */
     public function publish(){
         //判断session是否为空 开启session 
-        if(!isset($_SESSION)){
-            session_start();
-            }
-        header('Content-Type: text/html; charset=utf-8');
         //根据session判断登陆
-        if(empty($_SESSION['username'])){
+        if(empty(Session::get('username'))){
             echo "<script>alert('请先登录'),location.href='index'</script>";die;
-            }else{
-
-
+        }else{
             $at_type=DB::table('ar_type')->get();
             //print_r($at_type);die;
             $a_lei=DB::table('a_lei')->get();
             return view('article/publish',['ar_type'=>$at_type,'a_lei'=>$a_lei]);
-            }
+        }
     }
     
     
@@ -58,6 +58,7 @@ class ArticleController extends Controller
         $a_title=Request::input('a_title');
         $a_type=Request::input('a_type');
         $a_con=Request::input('a_con');
+        $user_id=Request::input('user_id');
         $a_addtime=date("Y-m-d H:i:s");
         $a_logo=Request::file('a_logo');
 
@@ -72,6 +73,7 @@ class ArticleController extends Controller
         
         $re = DB::table('article')->insert([
                 'a_title' => $a_title,
+                'user_id' => $user_id,
                 'a_type' => $a_type,
                 'a_con' => $a_con,
                 'a_addtime' => $a_addtime,
@@ -88,7 +90,6 @@ class ArticleController extends Controller
     *   文章点赞功能
     */
     public function zan(){
-
         $a_id=Request::input('id');
         if(empty(Session::get('username'))){
             echo 1;
@@ -130,23 +131,39 @@ class ArticleController extends Controller
         return view("article/type",['article'=>$type]);
     }
 
-
+    /*
+    *   文章内容显示
+    */
     public function wxiang(){
         if(empty(Session::get('username'))){
-            $username=0;
+            echo "<script>alert('请先登录'),location.href='index'</script>";die;
         }else{
             $username=Session::get('username');
         }
         $id=Request::input('id');
         $arr=DB::table("article")
             ->join("ar_type","article.a_type","=","ar_type.at_id")
-            ->where("article.a_id",$id)->get();
-        //var_dump($arr);exit();
-        $aping=DB::table('aping')->join("users","aping.u_id","=","users.user_id")->join("article","aping.a_id","=","article.a_id")->orderBy("aping.ap_id","desc")->limit(3)->get();
+            ->join("users","article.user_id","=","users.user_id")
+            ->where("article.a_id",$id)
+            ->get();
+        //print_r($arr);die;
+        $aping = DB::table('aping')
+            ->join("users","aping.u_id","=","users.user_id")
+            ->join("article","aping.a_id","=","article.a_id")
+            ->orderBy("aping.ap_id","desc")
+            ->limit(3)
+            ->get();
        //print_r($aping);die;
+        $user = DB::table('users')
+            ->where('user_name',$username)
+            ->first();
+        //print_r($user);die;
         return view('article/wxiang',['arr'=>$arr[0],'username'=>$username,'aping'=>$aping]);
     }
     
+    /*
+    *   
+    */
     public function wping(){
         if(empty(Session::get('username'))){
             $username=0;
@@ -177,22 +194,18 @@ class ArticleController extends Controller
                 ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
                 ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
                 ->orderBy('a_num' , 'desc')
+                ->paginate(5);
+        $tui = DB::table('article')
+                ->leftJoin('ar_type' , 'article.a_type' , '=' , 'ar_type.at_id')
+                ->leftJoin('a_lei' , 'article.a_lei' , '=' , 'a_lei.al_id')
+                ->orderBy('a_num' , 'desc')
+                ->limit(2)
                 ->get();
         if(empty(Session::get('username'))){
             $username=0;
         }else{
             $username=Session::get('username');
         }
-        $user=DB::table('users')->where("user_name","$username")->first();//->orwhere("user_email","$username")
-        $u_id=$user['user_id'];
-        foreach($article as $key=>$val){
-            $arr=DB::table('article_zan')->where(["u_id"=>0,"article_id"=>$val['a_id']])->first();
-            if($arr){
-                $article[$key]['zan']="1";
-            }else{
-                $article[$key]['zan']="0";
-            }
-        }
-        return view('article/article1',['at_type'=>$at_type,'article'=>$article]);
+        return view('article/article1',['at_type'=>$at_type,'article'=>$article,'tui'=>$tui]);
     }
 }

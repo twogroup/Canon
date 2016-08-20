@@ -40,6 +40,7 @@
                 <label for="art-title" class="form-label l"><span>*</span>标题</label>
                 <div class="form-ipt-wrap">
                     <input id="art-title" name="a_title" class="art-title" placeholder="请输入标题" type="text">
+                    <input type="hidden" name="user_id" value="<?php echo Session::get('u_id') ?>">
                     <p class="form-ipt-error"></p>
                 </div>
             </div>
@@ -94,7 +95,7 @@
                     <div class="tag-box clearfix">
                     <?php foreach($a_lei as $k=>$v){?>
                         <span tag-id="12" name="al_name" id="al_name" value="<?php echo $v['al_name']?>"><?php echo $v['al_name']?></span>
-                    <?php } ?>z
+                    <?php } ?>
                     </div>
                 </div><!--tag-selector-wrap end-->
             </div><!--tag-selector end-->

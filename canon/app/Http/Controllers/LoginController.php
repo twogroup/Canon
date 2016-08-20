@@ -24,7 +24,7 @@ class LoginController extends Controller
             if($u_pwd == $users[0]['user_pwd']){
                 Session::put('username',$users[0]['user_name']);
                 Session::put('u_id',$users[0]['user_id']);
-                //echo Session::get('username');
+                Session::put('img',$users[0]['user_img']);
                 return 1;
             }
         }else if(preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/', $u_name)){
@@ -34,6 +34,7 @@ class LoginController extends Controller
             if($u_pwd == $users[0]['user_pwd']){
                 Session::put('u_id',$users[0]['user_id']);
                 Session::put('username',$users[0]['user_name']);
+                Session::put('img',$users[0]['user_img']);
                 return 1;
             }
         }

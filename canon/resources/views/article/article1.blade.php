@@ -20,7 +20,16 @@
         var is_choice = "";
         var seajsTimestamp="v=201603251711";
     </script>
-
+    <style>
+        #fenye li{
+            list-style: none;
+            float: left;
+            margin-top: 20px;
+            margin-left: 30px;
+            font-size: 18px;
+            color: #ff998c;
+        }
+    </style>
     <link rel="stylesheet" href="css/3dd38c5eb19043548362b1f191b56a92.css" type="text/css" />
 </head>
 <body >
@@ -91,6 +100,7 @@
 <?php } ?>
 
         </div>
+        <ul id="fenye"><li>{{ $article->render() }}</li></ul>
         </div>
         <div class="article-right r">
             <!-- 写文章 -->
@@ -107,50 +117,30 @@
                 <h2 class="panel-hd">推荐文章</h2>
                 <div class="remon-main">
                     <ul>
+                    @foreach($tui as $k => $t)
                         <li>
                             <h3 class="remon-title">
-                                <a href="#" class="title-detail">什么才算是真正的编程能力？</a>
+                                <a href="#" class="title-detail"><?= $t['a_title'] ?></a>
                             </h3>
-                            <p class="remon-bd">知乎上看到一题主的发问： 还在读书，也在实验室帮忙做了些东西，自己也搭过几个网站。在周围人看来似乎好...</p>
+                            <p class="remon-bd"><?= $t['a_con'] ?></p>
                             <div class="arti-info clearfix">
                                 <ul>
                                     <li class="hd-pic">
                                         <a class="publisher-hd" href="#" target="_blank">
                                             <img src="" alt="" width="20" height="20" />
                                         </a>
-                                        <a class="publisher-name" href="#" target="_blank">奋斗在路上</a>
+                                        <a class="item-tag" href="#" target="_blank"><?= $t['at_type'] ?></a>
                                     </li>
                                     <li class="now-tag">
-                                        <a class="item-tag" href="#" target="_blank">职场/生活</a>
+                                        <a class="publisher-name" href="#" target="_blank"><?= $t['a_addtime'] ?></a>
                                     </li>
                                     <li class="now-tag">
-                                        <span class="viewed-num">20038浏览</span>
+                                        <!-- <span class="viewed-num">20038浏览</span> -->
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li>
-                            <h3 class="remon-title">
-                                <a href="#" class="title-detail">C语言知识点大汇总</a>
-                            </h3>
-                            <p class="remon-bd">【前言】 看到有读者说想要一些IOS开发前需要学习哪些知识，今天就把我再CSDN上的C语言博客拿过来分享给大...</p>
-                            <div class="arti-info clearfix">
-                                <ul>
-                                    <li class="hd-pic">
-                                        <a class="publisher-hd" href="#" target="_blank">
-                                            <img src="picture/545861d500015cc602200220-100-100.jpg" alt="" width="20" height="20" />
-                                        </a>
-                                        <a class="publisher-name" href="#" target="_blank">i爱慕客</a>
-                                    </li>
-                                    <li class="now-tag">
-                                        <a class="item-tag" href="#" target="_blank">后端开发</a>
-                                    </li>
-                                    <li class="now-tag">
-                                        <span class="viewed-num">10288浏览</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
